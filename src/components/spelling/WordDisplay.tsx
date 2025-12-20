@@ -30,7 +30,7 @@ export function WordDisplay({ word, onPronunciationComplete }: WordDisplayProps)
 
       try {
         setIsPlaying(true);
-        const { audioUrl } = await openAIService.textToSpeech(word.word, 'shimmer', 0.85);
+        const { audioUrl } = await openAIService.textToSpeech(word.word, 'nova', 1.0);
         await soundManager.playWord(audioUrl);
       } catch (error) {
         console.error('Error speaking word:', error);
@@ -52,7 +52,7 @@ export function WordDisplay({ word, onPronunciationComplete }: WordDisplayProps)
 
     try {
       setIsPlaying(true);
-      const { audioUrl } = await openAIService.textToSpeech(word.word, 'shimmer', 0.85);
+      const { audioUrl } = await openAIService.textToSpeech(word.word, 'nova', 1.0);
       await soundManager.playWord(audioUrl);
     } catch (error) {
       console.error('Error speaking word:', error);
@@ -67,7 +67,7 @@ export function WordDisplay({ word, onPronunciationComplete }: WordDisplayProps)
     try {
       setIsPlaying(true);
       const text = `${word.word}. ${word.definition}`;
-      const { audioUrl } = await openAIService.textToSpeech(text, 'shimmer', 0.75);
+      const { audioUrl } = await openAIService.textToSpeech(text, 'nova', 1.0);
       await soundManager.playWord(audioUrl);
     } catch (error) {
       console.error('Error speaking definition:', error);
@@ -81,7 +81,7 @@ export function WordDisplay({ word, onPronunciationComplete }: WordDisplayProps)
 
     try {
       setIsPlaying(true);
-      const { audioUrl} = await openAIService.textToSpeech(word.sentence, 'shimmer', 0.75);
+      const { audioUrl} = await openAIService.textToSpeech(word.sentence, 'nova', 1.0);
       await soundManager.playWord(audioUrl);
     } catch (error) {
       console.error('Error speaking sentence:', error);
