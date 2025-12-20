@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Theme CSS Variables - Easy to swap for custom themes later */
+
+  /* Primary Colors */
+  --color-primary: #6366f1; /* Indigo */
+  --color-secondary: #8b5cf6; /* Purple */
+  --color-accent: #f59e0b; /* Amber */
+
+  /* Background & Surface */
+  --color-background: #f8fafc; /* Light gray */
+  --color-surface: #ffffff;
+
+  /* Text */
+  --color-text: #1e293b; /* Dark slate */
+  --color-text-muted: #64748b; /* Slate */
+
+  /* Status Colors */
+  --color-success: #10b981; /* Green */
+  --color-error: #ef4444; /* Red */
+  --color-warning: #f59e0b; /* Amber */
+
+  /* Typography */
+  --font-family: 'Inter', system-ui, -apple-system, sans-serif;
+
+  /* Spacing & Sizing (for future use) */
+  --spacing-unit: 0.25rem;
+  --border-radius: 0.5rem;
+
+  /* Transitions */
+  --transition-speed: 150ms;
+}
+
+/* Dark mode support (future) */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --color-background: #0f172a;
+    --color-surface: #1e293b;
+    --color-text: #f1f5f9;
+    --color-text-muted: #94a3b8;
+  }
+}
+
+/* Base Styles */
+@layer base {
+  body {
+    @apply bg-background text-text;
+    @apply font-sans;
+    @apply antialiased;
+    margin: 0;
+    min-height: 100vh;
+  }
+
+  /* Ensure touch-friendly sizing for 9-year-old users */
+  button,
+  input,
+  select,
+  textarea {
+    @apply text-base;
+    min-height: 44px; /* Accessibility: minimum touch target size */
+  }
+}
+
+/* Custom Component Utilities */
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-white rounded-lg px-6 py-3 font-semibold;
+    @apply hover:opacity-90 active:scale-95;
+    @apply transition-all duration-150;
+  }
+
+  .btn-secondary {
+    @apply bg-secondary text-white rounded-lg px-6 py-3 font-semibold;
+    @apply hover:opacity-90 active:scale-95;
+    @apply transition-all duration-150;
+  }
+
+  .card {
+    @apply bg-surface rounded-lg shadow-lg p-6;
+  }
+}
+
+/* Utility Classes */
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+
+  /* Animation delays for pulse effects */
+  .delay-75 {
+    animation-delay: 75ms;
+  }
+
+  .delay-150 {
+    animation-delay: 150ms;
+  }
+
+  .delay-300 {
+    animation-delay: 300ms;
+  }
+}

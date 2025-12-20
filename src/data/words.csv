@@ -1,0 +1,451 @@
+id,word,difficulty,definition,sentence
+1,tag,1,A game where you chase and touch someone,We played tag at recess and I was it three times.
+2,send,1,To make something go to someone else,I will send a letter to my grandma for her birthday.
+3,deck,1,A flat outdoor area attached to a house,We ate lunch on the deck in our backyard.
+4,stuck,1,Unable to move or get free,My toy car got stuck under the couch.
+5,snug,1,Warm and cozy or fitting tightly,The blanket felt snug and warm on the cold night.
+6,fish,1,An animal that lives and swims in water,I saw a colorful fish swimming in the pond.
+7,hold,1,To have something in your hands or arms,Please hold my bag while I tie my shoe.
+8,mind,1,The part of you that thinks and remembers,I changed my mind about what to have for lunch.
+9,stay,1,To remain in one place,My dog will stay here while I go to school.
+10,scrub,1,To clean something by rubbing it hard,Mom asked me to scrub the dirty dishes.
+11,draw,1,To make a picture with pencils or crayons,I like to draw animals in my sketchbook.
+12,brown,1,A dark color like chocolate or dirt,The puppy had soft brown fur.
+13,cozy,1,Comfortable and warm,My bedroom feels cozy with all my stuffed animals.
+14,tint,1,A light shade or small amount of color,The sky had a pink tint at sunset.
+15,milk,1,A white drink that comes from cows,I poured milk on my cereal this morning.
+16,yawn,1,To open your mouth wide when tired,I always yawn when it's time for bed.
+17,tank,1,A large container for water or other liquids,The fish swam happily in their tank.
+18,want,1,To wish for something,I want a new bike for my birthday.
+19,crowd,1,A large group of people together,There was a big crowd at the soccer game.
+20,pond,1,A small lake with still water,We saw frogs and turtles at the pond.
+21,skirt,1,Clothing that hangs from the waist,She wore a blue skirt to school today.
+22,sharks,1,Large fish with sharp teeth that live in the ocean,We learned about sharks at the aquarium.
+23,quilt,1,A warm blanket made from pieces of fabric,Grandma made me a quilt with bright colors.
+24,twigs,1,Small thin branches from a tree,The bird used twigs to build its nest.
+25,taffy,1,A chewy candy that is stretched when made,We bought saltwater taffy at the beach.
+26,comfy,1,Comfortable and relaxing,These pajamas are so comfy I could sleep in them all day.
+27,stretch,1,To make something longer by pulling it,The cat likes to stretch after a nap.
+28,tight,1,Fitting closely or hard to move,The lid on the jar was too tight to open.
+29,candy,1,Sweet food made with sugar,I got candy on Halloween.
+30,scrunch,1,To squeeze or crush into a smaller space,I had to scrunch my clothes to fit them in my backpack.
+31,ruby,1,A red precious stone used in jewelry,The ring had a beautiful red ruby in it.
+32,close,1,To shut something or near in distance,Please close the door when you leave.
+33,tackle,1,To grab and hold someone or solve a problem,The football player made a great tackle.
+34,wire,1,A thin metal thread used to carry electricity,The bird sat on the telephone wire.
+35,skater,1,Someone who glides on ice or wheels,The ice skater did a perfect spin.
+36,giant,1,Something or someone very big,The giant tree was the tallest in the forest.
+37,bucket,1,A container with a handle for carrying water,I filled the bucket with water for the plants.
+38,chance,1,A possibility or opportunity,This is your chance to try something new.
+39,baskets,1,Containers made of woven materials,We carried the fruit home in baskets.
+40,tender,1,Soft and gentle or easily chewed,The meat was tender and delicious.
+41,paste,1,A thick wet mixture used to stick things,We used paste to glue the paper together.
+42,melon,1,A large sweet fruit with lots of juice,The watermelon was cold and refreshing on a hot day.
+43,farmer,1,A person who grows crops and raises animals,The farmer fed the chickens every morning.
+44,parent,1,A mother or father,My parent helps me with my homework.
+45,tail,1,The part that sticks out from an animal's rear,The dog wagged its tail happily.
+46,hockey,1,A sport played on ice with sticks and a puck,My brother plays hockey every Saturday.
+47,slime,1,A wet slippery substance,We made green slime in science class.
+48,insects,1,Small animals with six legs like ants and bees,We saw many insects in the garden.
+49,teeth,1,The hard white parts in your mouth for biting,You should brush your teeth twice a day.
+50,shortcut,1,A quicker way to get somewhere,We took a shortcut through the park.
+51,bait,1,Food used to catch fish or animals,We put worms on the hook as bait.
+52,lure,1,Something that attracts or tempts,The shiny lure helped us catch a big fish.
+53,cluster,1,A group of things close together,There was a cluster of grapes on the vine.
+54,forest,1,A large area filled with trees,We went hiking in the forest and saw deer.
+55,hollow,1,Having an empty space inside,The rabbit lived in a hollow log.
+56,spinning,1,Turning around quickly,The top kept spinning on the table.
+57,baffling,1,Very confusing or puzzling,The magic trick was baffling and amazing.
+58,sizzling,1,Making a hissing sound while cooking,The bacon was sizzling in the pan.
+59,hoist,1,To lift or raise something up,We had to hoist the flag up the pole.
+60,search,1,To look carefully for something,I had to search my room to find my lost shoe.
+61,remind,1,To help someone remember something,Please remind me to bring my lunch tomorrow.
+62,mango,1,A sweet tropical fruit with orange flesh,The mango was juicy and delicious.
+63,coral,1,A hard substance made by tiny sea animals,The coral reef was full of colorful fish.
+64,jangle,1,To make a ringing metallic sound,The keys jangle in my pocket when I walk.
+65,shimmer,1,To shine with a soft flickering light,The lake seemed to shimmer in the sunlight.
+66,blossoms,1,Flowers on a tree or plant,The cherry blossoms were pink and beautiful.
+67,swampy,1,Wet and muddy like a swamp,The ground was swampy after all the rain.
+68,studded,1,Decorated with small pieces sticking out,Her jacket was studded with silver buttons.
+69,focus,1,To pay close attention to something,I need to focus on my math homework.
+70,distress,1,Great worry or pain,The lost puppy was in distress.
+71,lessons,1,Times when you learn something new,I have piano lessons every Tuesday.
+72,moment,1,A very short amount of time,Wait just a moment while I get my coat.
+73,ajar,1,Slightly open,The door was left ajar so the cat could come in.
+74,basil,1,An herb with green leaves used in cooking,We added fresh basil to the spaghetti sauce.
+75,triple,1,Three times as much,I got a triple scoop of ice cream.
+76,satin,1,A smooth shiny fabric,The dress was made of pink satin.
+77,ahoy,1,A greeting used by sailors,The pirate shouted ahoy to the ship.
+78,signal,1,A sign or gesture that gives information,The traffic signal turned green.
+79,answer,1,A reply to a question,I raised my hand to answer the question.
+80,shuffle,1,To mix cards or walk without lifting your feet,I shuffle the cards before dealing them.
+81,dollop,1,A small lump or portion of soft food,I put a dollop of whipped cream on my pie.
+82,minnows,1,Very small fish,We caught minnows in the creek.
+83,silver,1,A shiny gray-white metal or color,The necklace was made of silver.
+84,before,1,At an earlier time,I finished my homework before dinner.
+85,circus,1,A show with acrobats and clowns,We saw elephants and lions at the circus.
+86,writing,1,Putting words on paper,I am writing a story about a dragon.
+87,kitchen,1,The room where food is cooked,Mom is making cookies in the kitchen.
+88,sugar,1,A sweet substance used in food,I put two spoons of sugar in my tea.
+89,awkward,1,Uncomfortable or clumsy,I felt awkward at the new school.
+90,seep,1,To flow slowly through small openings,Water began to seep through the crack.
+91,sweet,1,Having a sugary taste,The strawberries were ripe and sweet.
+92,wheels,1,Round objects that help things roll,My bike has two wheels.
+93,faint,1,Weak or barely noticeable,I heard a faint sound in the distance.
+94,fruit,1,The sweet part of a plant with seeds,Apples and oranges are my favorite fruit.
+95,roam,1,To wander around freely,The horses roam freely in the field.
+96,goats,1,Farm animals with horns and beards,The goats climbed up the rocky hill.
+97,woozy,1,Feeling dizzy or unsteady,The spinning ride made me feel woozy.
+98,limbs,1,Arms and legs or branches of a tree,The monkey swung from limb to limb.
+99,ahead,1,In front or in the future,Look ahead to see where you are going.
+100,señor,1,The Spanish word for mister,Señor Garcia is our Spanish teacher.
+101,unicorn,1,A magical horse with a horn on its head,The unicorn in the story had a golden horn.
+102,faraway,1,At a great distance,We traveled to a faraway land on vacation.
+103,heater,1,A device that makes things warm,We turned on the heater when it got cold.
+104,pirates,1,People who rob ships at sea,The pirates searched for buried treasure.
+105,understand,1,To know what something means,I understand how to solve the problem now.
+106,wooden,1,Made of wood,The wooden chair was handmade.
+107,leaning,1,Bending or resting against something,The tower is leaning to one side.
+108,breakfast,1,The first meal of the day,I had pancakes for breakfast.
+109,window,1,An opening in a wall with glass,I looked out the window at the birds.
+110,acrobat,1,A person who does gymnastic tricks,The acrobat did a flip in the air.
+111,message,1,Information sent to someone,I left a message on her phone.
+112,chocolate,1,A sweet brown food made from cocoa,I love chocolate chip cookies.
+113,forepaw,1,The front paw of an animal,The cat lifted its forepaw to bat at the toy.
+114,elephant,1,A large gray animal with a trunk,The elephant used its trunk to spray water.
+115,hedgehog,1,A small animal covered with spikes,The hedgehog curled into a ball.
+116,recipe,1,Instructions for cooking something,I followed the recipe to bake a cake.
+117,garbage,1,Trash or waste material,Please take out the garbage.
+118,surprise,1,Something unexpected,The birthday party was a big surprise.
+119,mermaid,1,A mythical creature that is half human and half fish,The mermaid swam in the ocean.
+120,bombarded,1,Attacked with many things at once,We were bombarded with snowballs in the fight.
+121,disability,1,A condition that makes some activities difficult,She uses a wheelchair because of her disability.
+122,incredible,1,Amazing or hard to believe,The sunset was incredible with its bright colors.
+123,leather,1,Material made from animal skin,My shoes are made of brown leather.
+124,countess,1,A noble woman with a high rank,The countess lived in a grand castle.
+125,nervous,1,Worried or anxious about something,I was nervous before my piano recital.
+126,peppercorn,1,A small dried berry used as spice,The chef ground peppercorns for the sauce.
+127,cartwheel,1,A sideways handstand where you flip over,I did a cartwheel on the grass.
+128,raise,1,To lift something up or increase,Please raise your hand if you know the answer.
+129,weather,1,The condition of the air outside,The weather is sunny and warm today.
+130,zooming,1,Moving very fast,The race car went zooming past us.
+131,attacked,1,Tried to hurt someone or something,The brave knight attacked the dragon.
+132,turnout,1,The number of people who come to an event,There was a great turnout at the school play.
+133,eaten,1,Put food in your mouth and swallowed it,I have already eaten lunch.
+134,streetlights,1,Lamps along the road that light up at night,The streetlights came on when it got dark.
+135,journey,1,A long trip from one place to another,Our journey to the mountains took five hours.
+136,courtyard,1,An open area surrounded by walls or buildings,We played in the courtyard during break.
+137,shouting,1,Yelling or calling out loudly,The coach was shouting instructions to the team.
+138,asleep,1,Sleeping or not awake,The baby fell asleep in my arms.
+139,curious,1,Wanting to know or learn about something,I was curious about what was in the box.
+140,dinosaur,1,A large extinct reptile from long ago,The dinosaur skeleton was huge at the museum.
+141,brilliant,1,Very bright or extremely smart,The fireworks were brilliant in the night sky.
+142,vacuum,1,A machine that sucks up dirt from floors,I helped vacuum the living room carpet.
+143,gorgeous,1,Very beautiful,The garden looked gorgeous with all the flowers.
+144,monsoon,1,A season with very heavy rain,The monsoon brought flooding to the village.
+145,dangerous,1,Not safe and could cause harm,Swimming in the deep water is dangerous.
+146,avocado,1,A green fruit with a large pit inside,I put sliced avocado on my sandwich.
+147,valentine,1,A card or gift given on Valentine's Day,I made a valentine for my mom.
+148,February,1,The second month of the year,My birthday is in February.
+149,formation,1,The way things are arranged,The geese flew in a V formation.
+150,especially,1,More than usual or particularly,I especially love chocolate ice cream.
+151,hesitate,2,To pause before doing something,Don't hesitate to ask if you need help.
+152,scorcher,2,A very hot day,Yesterday was a real scorcher at 95 degrees.
+153,scavenger,2,An animal that eats dead things it finds,Vultures are scavengers that clean up the environment.
+154,fragments,2,Small broken pieces of something,We found fragments of the broken vase.
+155,deflated,2,Let the air out or feeling disappointed,The balloon deflated after it popped.
+156,unleash,2,To release or set free,The trainer will unleash the dogs to run.
+157,ration,2,A fixed amount of something,Each camper got a ration of food.
+158,cosmetics,2,Products used to make yourself look better,Lipstick and nail polish are cosmetics.
+159,crawdad,2,A small freshwater animal like a little lobster,We caught crawdads in the stream.
+160,frustration,2,The feeling of being upset when things don't work,I felt frustration when I couldn't solve the puzzle.
+161,unruly,2,Hard to control or manage,The unruly crowd pushed and shoved.
+162,mascot,2,An animal or character that represents a team,Our school mascot is a tiger.
+163,aroma,2,A pleasant smell,The aroma of fresh bread filled the bakery.
+164,moustache,2,Hair grown on the upper lip,My grandpa has a thick gray moustache.
+165,artifacts,2,Objects made by people long ago,We saw ancient artifacts at the museum.
+166,perfume,2,A liquid with a pleasant smell,She wore rose perfume to the party.
+167,sinister,2,Evil or threatening,The villain had a sinister laugh.
+168,tuxedo,2,A formal black suit for special occasions,He wore a tuxedo to the wedding.
+169,discoveries,2,Things that are found or learned for the first time,Scientists made important discoveries about space.
+170,lurches,2,Sudden unsteady movements,The bus lurches when it stops suddenly.
+171,language,2,The words people use to communicate,Spanish is a beautiful language.
+172,prognosis,2,A prediction about how a disease will develop,The doctor gave a good prognosis for recovery.
+173,Buffalo,2,A large wild animal or a city in New York,We saw buffalo roaming on the prairie.
+174,sequins,2,Small shiny discs sewn on clothing,Her dress sparkled with gold sequins.
+175,gallop,2,The fastest way a horse can run,The horse began to gallop across the field.
+176,fabulous,2,Wonderful or extraordinary,The party decorations looked fabulous.
+177,lanky,2,Tall and thin,The lanky basketball player was over six feet tall.
+178,fluently,2,Smoothly and easily,She speaks French fluently.
+179,mysterious,2,Strange and difficult to understand,The mysterious footprints led into the forest.
+180,brandished,2,Waved something as a threat or display,The pirate brandished his sword.
+181,sardines,2,Small fish often packed in cans,We ate sardines on crackers.
+182,anguish,2,Severe pain or distress,She cried out in anguish when she fell.
+183,conical,2,Shaped like a cone,The wizard wore a tall conical hat.
+184,rickety,2,Shaky and likely to break,The rickety old bridge swayed in the wind.
+185,lilt,2,A pleasant gentle rhythm in speech or music,Her voice had a musical lilt.
+186,pediatric,2,Related to medical care for children,She works at a pediatric hospital.
+187,porridge,2,A hot cereal made from oats,Goldilocks ate the bear's porridge.
+188,democracy,2,A government where people vote for leaders,We live in a democracy where everyone can vote.
+189,rummage,2,To search through things messily,I had to rummage through my drawer for socks.
+190,beige,2,A light brown color,The couch was a soft beige color.
+191,ancestral,2,Related to your ancestors or family history,We visited our ancestral homeland in Italy.
+192,grimace,2,A twisted facial expression showing pain,He made a grimace when he tasted the sour lemon.
+193,gaunt,2,Very thin and bony,The stray dog looked gaunt and hungry.
+194,enormous,2,Extremely large,The enormous elephant was the biggest at the zoo.
+195,geranium,2,A plant with colorful flowers,Red geraniums bloomed in the window box.
+196,nautical,2,Related to ships and sailing,The room had a nautical theme with anchors.
+197,dubious,2,Doubtful or questionable,I'm dubious about whether that story is true.
+198,ebony,2,A very dark black wood or color,The piano was made of shiny ebony.
+199,foreign,2,From another country,She learned a foreign language at school.
+200,paltry,2,Very small or worthless,He only got a paltry amount of money.
+201,verdict,2,A decision made by a jury,The verdict was guilty.
+202,garbled,2,Confused and unclear,The phone message was garbled and hard to understand.
+203,encourages,2,Gives support or confidence to someone,My teacher encourages me to do my best.
+204,imitation,2,A copy of something real,This is an imitation of a famous painting.
+205,miniature,2,A very small version of something,She collected miniature dollhouse furniture.
+206,receptionist,2,A person who greets visitors at an office,The receptionist answered the phone.
+207,preamble,2,An introduction to a speech or document,The preamble to the Constitution is famous.
+208,plausible,2,Seems possible or believable,Your explanation sounds plausible.
+209,reprimanding,2,Scolding or criticizing someone,The principal was reprimanding the students.
+210,commotion,2,A lot of noise and confusion,There was a commotion when the fire alarm went off.
+211,oblivion,2,Being completely forgotten or unaware,The old building fell into oblivion.
+212,immigrants,2,People who come to live in a new country,My grandparents were immigrants from Ireland.
+213,steeple,2,A tall tower on a church,We could see the church steeple from far away.
+214,spectators,2,People who watch an event,The spectators cheered loudly at the game.
+215,lanyards,2,Cords worn around the neck to hold ID cards,We made friendship lanyards at camp.
+216,suspicious,2,Having doubts or thinking something is wrong,The detective was suspicious of the stranger.
+217,parchment,2,Paper-like material made from animal skin,The ancient scroll was written on parchment.
+218,ramshackle,2,Falling apart and in bad condition,They lived in a ramshackle old cabin.
+219,fugitive,2,A person running away from the law,The fugitive hid in the woods.
+220,heron,2,A large wading bird with long legs,A blue heron stood in the shallow water.
+221,dissolving,2,Breaking apart and mixing with liquid,The sugar is dissolving in the hot tea.
+222,nomad,2,A person who moves from place to place,The nomad traveled across the desert.
+223,billowed,2,Swelled or puffed out,The sails billowed in the strong wind.
+224,skewer,2,A long stick used to hold food for cooking,We put vegetables on the skewer for the grill.
+225,Berlin,2,The capital city of Germany,We visited Berlin on our European trip.
+226,lunacy,2,Foolish or crazy behavior,It would be lunacy to go out in this storm.
+227,conjure,2,To make something appear by magic,The magician tried to conjure a rabbit.
+228,bracken,2,A type of large fern plant,The forest floor was covered with bracken.
+229,noggin,2,An informal word for head,Use your noggin to think of the answer.
+230,neon,2,A bright glowing light or color,The sign was lit up with neon lights.
+231,rakish,2,Stylish in a bold way,He wore his hat at a rakish angle.
+232,hypnosis,2,A sleep-like state where you follow suggestions,The hypnosis show was fascinating.
+233,rotunda,2,A round building or room with a dome,The capitol building has a beautiful rotunda.
+234,gusto,2,Great energy and enthusiasm,She sang with gusto and passion.
+235,toiletries,2,Items for washing and grooming,I packed toiletries like soap and toothpaste.
+236,gleaned,2,Gathered information or crops bit by bit,I gleaned some interesting facts from the book.
+237,jeered,2,Made fun of or mocked loudly,The crowd jeered at the opposing team.
+238,winsome,2,Charming and attractive,She had a winsome smile.
+239,prattling,2,Talking in a silly or childish way,The toddler was prattling about his toys.
+240,galore,2,In large amounts,There were treats galore at the party.
+241,emporium,2,A large store selling many things,The toy emporium had everything imaginable.
+242,atrium,2,An open central hall in a building,The hotel atrium had plants and a fountain.
+243,eccentric,2,Unusual and odd in behavior,The eccentric inventor wore mismatched socks.
+244,savant,2,A person with extraordinary knowledge or skill,The musical savant could play any song.
+245,almanac,2,A book with calendar and weather information,The farmer's almanac predicted rain.
+246,hippies,2,People in the 1960s who valued peace and freedom,The hippies wore colorful clothes.
+247,samosas,2,Fried pastries filled with vegetables or meat,We ate delicious samosas at the Indian restaurant.
+248,campaign,2,Organized activities to achieve a goal,She ran a campaign to become class president.
+249,pistachio,2,A green nut with a hard shell,Pistachio ice cream is my favorite flavor.
+250,mosque,2,A building where Muslims worship,The mosque had a beautiful dome.
+251,zombielike,2,Moving slowly like the undead,He walked zombielike after staying up all night.
+252,warlock,2,A male witch with magical powers,The warlock cast a powerful spell.
+253,colossus,2,Something enormous in size,The statue was a colossus overlooking the harbor.
+254,convulsively,2,With sudden jerky movements,He laughed convulsively at the joke.
+255,dimensional,2,Related to measurements of size,We studied three-dimensional shapes in math.
+256,garishly,2,In an overly bright and showy way,The room was garishly decorated with neon colors.
+257,graffitist,2,A person who paints on walls illegally,The graffitist left colorful art on the building.
+258,Everest,2,The world's tallest mountain,Climbing Mount Everest is very dangerous.
+259,dexterity,2,Skill in using your hands,The surgeon showed great dexterity.
+260,cavorting,2,Jumping around playfully,The puppies were cavorting in the yard.
+261,marauder,2,A raider who attacks and steals,The marauder stole from the village.
+262,conscience,2,Your inner sense of right and wrong,My conscience told me to tell the truth.
+263,battlements,2,The top of a castle wall with gaps for defense,Soldiers stood on the battlements.
+264,deferential,2,Showing respect to someone,He was deferential to his elders.
+265,albatross,2,A large seabird with long wings,The albatross soared over the ocean.
+266,khaki,2,A light brown color or cotton fabric,He wore khaki pants to work.
+267,opalescent,2,Showing changing colors like an opal,The soap bubbles were opalescent.
+268,asphalt,2,A black material used to pave roads,The asphalt was hot on a summer day.
+269,Yiddish,2,A language spoken by some Jewish people,My grandmother spoke Yiddish.
+270,talcum,2,A soft powder used on skin,She put talcum powder on the baby.
+271,tranquilizer,2,A drug that makes you calm or sleepy,The vet gave the nervous dog a tranquilizer.
+272,equestrian,2,Related to horse riding,She competed in equestrian events.
+273,plaited,2,Braided together,Her plaited hair hung down her back.
+274,monsieur,2,The French word for mister,Monsieur Dupont teaches French class.
+275,manticores,2,Mythical creatures with lion bodies and human heads,The story featured dangerous manticores.
+276,prestigious,2,Respected and admired,He attended a prestigious university.
+277,fraidycat,2,Someone who is easily scared,Don't be such a fraidycat about the spider.
+278,guttural,2,A harsh sound from the throat,The lion made a guttural roar.
+279,lo mein,2,Chinese noodles with vegetables,We ordered chicken lo mein for dinner.
+280,courier,2,A person who delivers messages or packages,The courier brought the urgent package.
+281,sans serif,2,A type of simple lettering without decorative lines,The sign used sans serif font.
+282,psyche,2,Your mind and emotions,The loss affected her psyche deeply.
+283,stucco,2,A plaster coating on walls,The house had white stucco walls.
+284,Frankenstein,2,A famous monster from a classic book,We read Frankenstein in literature class.
+285,schema,2,A plan or diagram,The teacher showed us a schema of the lesson.
+286,et cetera,2,And other similar things,We need pencils pens erasers et cetera.
+287,vidimus,2,An official copy or inspection,The vidimus confirmed the document was real.
+288,delphine,2,Related to dolphins,The delphine creatures swam gracefully.
+289,slough,2,A swamp or to shed skin,Snakes slough off their old skin.
+290,archipelago,2,A group of islands,The Philippines is an archipelago.
+291,serape,2,A colorful blanket worn as a cloak,He wore a striped serape.
+292,puissance,2,Great power or strength,The knight showed puissance in battle.
+293,pinioning,2,Holding someone's arms to restrain them,The guards were pinioning the prisoner.
+294,chignon,2,A hairstyle with hair twisted into a bun,She wore her hair in an elegant chignon.
+295,pheromone,2,A chemical that affects behavior in animals,Ants use pheromones to communicate.
+296,galleon,2,A large sailing ship from long ago,The Spanish galleon carried treasure.
+297,magnanimous,2,Very generous and forgiving,It was magnanimous of her to forgive him.
+298,chartreuse,2,A yellow-green color,The walls were painted chartreuse.
+299,wainscoting,2,Wooden panels on the lower part of walls,The dining room had beautiful wainscoting.
+300,Nehru,2,An Indian leader or a type of jacket collar,He wore a Nehru jacket to the event.
+301,gangly,3,Tall and awkward in movement,The gangly teenager was still growing.
+302,swaggering,3,Walking in a proud showy way,The bully came swaggering down the hall.
+303,chimneys,3,Structures that let smoke escape from a building,Santa climbs down chimneys on Christmas Eve.
+304,riveted,3,Completely fascinated or fastened with metal pins,I was riveted by the exciting movie.
+305,plaid,3,A pattern with crossing stripes,He wore a plaid flannel shirt.
+306,dirge,3,A sad song for a funeral,The mourners sang a solemn dirge.
+307,zeal,3,Great energy and enthusiasm,She worked with zeal on her project.
+308,whittled,3,Carved wood by cutting small pieces,Grandpa whittled a toy boat from wood.
+309,depots,3,Stations where buses or trains stop,The train depots were crowded with travelers.
+310,fiberglass,3,Material made from glass fibers,The boat hull was made of fiberglass.
+311,salvaged,3,Rescued or saved from being lost,They salvaged furniture from the old house.
+312,fissures,3,Long narrow cracks,Fissures appeared in the dry earth.
+313,enthusiastic,3,Very interested and excited,The students were enthusiastic about the field trip.
+314,discipline,3,Training to follow rules or self-control,The athlete showed great discipline.
+315,unfamiliar,3,Not known or recognized,The surroundings were unfamiliar to me.
+316,scurrying,3,Running with quick short steps,The mice were scurrying across the floor.
+317,dignitaries,3,Important official people,Foreign dignitaries attended the ceremony.
+318,pizzeria,3,A restaurant that makes pizza,We ordered from the new pizzeria.
+319,dismissal,3,The act of sending someone away,School dismissal is at three o'clock.
+320,skittish,3,Nervous and easily frightened,The skittish horse jumped at the noise.
+321,careened,3,Moved quickly in an uncontrolled way,The car careened around the corner.
+322,nomination,3,Being suggested for a position or award,She received a nomination for best actress.
+323,opportunist,3,Someone who takes advantage of situations,The opportunist used the confusion to escape.
+324,dictatorship,3,A government ruled by one person with total power,The country suffered under a cruel dictatorship.
+325,comrades,3,Friends who work together for a cause,The soldiers were loyal comrades.
+326,sporadic,3,Happening occasionally and irregularly,There were sporadic showers throughout the day.
+327,promenade,3,A walkway for strolling,We walked along the seaside promenade.
+328,repugnant,3,Very disgusting or offensive,The smell was repugnant.
+329,invincible,3,Impossible to defeat,The superhero seemed invincible.
+330,renowned,3,Famous and respected,She is a renowned scientist.
+331,parachute,3,A device that slows your fall from the sky,The skydiver opened his parachute.
+332,laborious,3,Requiring a lot of hard work,Digging the hole was laborious work.
+333,appointment,3,An arranged meeting,I have a dentist appointment tomorrow.
+334,foreseeable,3,Able to be predicted,There are no changes in the foreseeable future.
+335,ratify,3,To officially approve,Congress voted to ratify the treaty.
+336,scalpel,3,A small sharp knife used in surgery,The surgeon used a scalpel carefully.
+337,reclusive,3,Preferring to be alone,The reclusive author rarely gave interviews.
+338,compassionate,3,Showing kindness and caring,The nurse was compassionate with patients.
+339,bulletin,3,A short official announcement,The bulletin board has important notices.
+340,alfalfa,3,A plant grown to feed animals,The farmer grew alfalfa for his cattle.
+341,officially,3,In a formal or authorized way,School officially starts next Monday.
+342,crematorium,3,A place where bodies are cremated,The crematorium was located outside town.
+343,bayonet,3,A knife attached to the end of a rifle,Soldiers used bayonets in the old war.
+344,amicable,3,Friendly and peaceful,They reached an amicable agreement.
+345,exuberant,3,Full of energy and excitement,The crowd was exuberant after the victory.
+346,beautician,3,A person who does hair and makeup,The beautician styled hair at the salon.
+347,equations,3,Math problems with an equals sign,We solved equations in algebra class.
+348,assignment,3,A task given to be completed,Our homework assignment is due Friday.
+349,ultimatum,3,A final demand with a threat,He gave her an ultimatum to decide.
+350,whinnying,3,The sound a horse makes,The horse was whinnying in the stable.
+351,squalor,3,Very dirty and unpleasant conditions,They lived in terrible squalor.
+352,memoirs,3,A written account of personal memories,The president published his memoirs.
+353,cylinders,3,Tube-shaped objects,The engine has six cylinders.
+354,ominous,3,Suggesting something bad will happen,Dark ominous clouds filled the sky.
+355,muffler,3,A device that reduces engine noise,The car needs a new muffler.
+356,syndrome,3,A set of symptoms that occur together,The doctor diagnosed the syndrome.
+357,premises,3,A building and its land,No one is allowed on the premises after dark.
+358,safari,3,A trip to see wild animals,We went on a safari in Africa.
+359,lasagna,3,An Italian dish with layered pasta,Mom made delicious lasagna for dinner.
+360,substantially,3,By a large amount,The price increased substantially.
+361,mercantile,3,Related to trade and business,The town had a mercantile history.
+362,formidable,3,Impressive and somewhat frightening,The formidable opponent was hard to beat.
+363,propaganda,3,Biased information to promote a cause,The government spread propaganda.
+364,marquee,3,A sign over a theater entrance,The movie title was on the marquee.
+365,proficient,3,Skilled and competent,She is proficient in three languages.
+366,compunction,3,A feeling of guilt about doing something,He had no compunction about lying.
+367,emphatically,3,In a forceful clear way,She emphatically denied the accusation.
+368,hyperventilated,3,Breathed too quickly from panic or excitement,He hyperventilated during the panic attack.
+369,ostracism,3,Being excluded from a group,The bully faced ostracism from classmates.
+370,onslaught,3,A fierce attack,The team faced an onslaught of criticism.
+371,ruefully,3,In a regretful or sorrowful way,He ruefully admitted his mistake.
+372,misanthrope,3,A person who dislikes other people,The misanthrope lived alone in the woods.
+373,prototype,3,The first model of something,The engineers built a prototype of the car.
+374,cravenly,3,In a cowardly way,He cravenly refused to help.
+375,mulberry,3,A purple berry or the tree it grows on,We picked mulberries from the tree.
+376,hypocritical,3,Pretending to have beliefs you don't have,It's hypocritical to say one thing and do another.
+377,chlorine,3,A chemical used to clean pools,The pool smelled of chlorine.
+378,traumatic,3,Very disturbing and upsetting,The accident was a traumatic experience.
+379,receipts,3,Papers showing you paid for something,Keep your receipts for returns.
+380,solemnly,3,In a serious formal way,He solemnly promised to keep the secret.
+381,begrudge,3,To envy or resent someone having something,I don't begrudge her success.
+382,contentious,3,Likely to cause disagreement,The contentious issue divided the group.
+383,precocious,3,Unusually advanced for your age,The precocious child read at a college level.
+384,ensemble,3,A group performing together,The music ensemble played beautifully.
+385,cadre,3,A small group of trained people,A cadre of volunteers helped organize.
+386,lye,3,A strong chemical used in soap making,Lye must be handled carefully.
+387,belfry,3,A tower where bells hang,Bats lived in the church belfry.
+388,lacrosse,3,A sport played with a stick and ball,She plays lacrosse on the school team.
+389,sluice,3,A channel that controls water flow,Water rushed through the sluice.
+390,cajolery,3,Gentle persuasion with flattery,No amount of cajolery would change her mind.
+391,vigilance,3,Careful watchfulness,The guards maintained constant vigilance.
+392,residuals,3,Payments for repeated use of creative work,Actors receive residuals when shows rerun.
+393,boutique,3,A small shop selling stylish items,She bought a dress at the boutique.
+394,peroxide,3,A chemical used to bleach or disinfect,She used peroxide to lighten her hair.
+395,aristocracy,3,The highest social class of wealthy people,The aristocracy lived in grand estates.
+396,apocalypse,3,A terrible event that destroys everything,The movie showed a zombie apocalypse.
+397,tuberculosis,3,A serious disease affecting the lungs,Tuberculosis was once a deadly disease.
+398,barricade,3,A barrier blocking passage,Police set up a barricade on the road.
+399,confreres,3,Fellow members of a profession,The doctors met with their confreres.
+400,anonymously,3,Without revealing your name,The donation was given anonymously.
+401,unparalleled,3,Having no equal or match,Her talent was unparalleled.
+402,barrette,3,A clip for holding hair,She wore a sparkly barrette.
+403,chassis,3,The frame of a vehicle,The truck chassis was very sturdy.
+404,junket,3,A trip taken by officials at public expense,The senators went on a junket to Europe.
+405,quandary,3,A state of uncertainty,I was in a quandary about what to choose.
+406,Erie,3,One of the Great Lakes,Lake Erie borders several states.
+407,gingham,3,Cotton fabric with a checked pattern,The tablecloth was red and white gingham.
+408,silhouette,3,A dark outline against a lighter background,I saw the silhouette of a person in the window.
+409,auxiliary,3,Providing extra help or support,The auxiliary power kicked in.
+410,thesaurus,3,A book of synonyms,Use a thesaurus to find better words.
+411,patriarchs,3,Male leaders of families or groups,The patriarchs gathered for the meeting.
+412,chandelier,3,A decorative hanging light fixture,The crystal chandelier sparkled.
+413,dulce,3,The Spanish word for sweet,Dulce de leche is a sweet caramel.
+414,concierge,3,A hotel employee who helps guests,The concierge recommended restaurants.
+415,latticework,3,A pattern of crossed strips,The garden fence had decorative latticework.
+416,hibiscus,3,A tropical plant with large colorful flowers,Pink hibiscus bloomed in the garden.
+417,tamale,3,A Mexican food wrapped in corn husks,We ate chicken tamales for dinner.
+418,maracas,3,Musical instruments you shake,He played the maracas in the band.
+419,gyroplane,3,An aircraft with rotating blades,The gyroplane hovered above the field.
+420,burpees,3,A type of exercise,We did twenty burpees in gym class.
+421,Adriatic,3,A sea between Italy and the Balkans,We sailed on the Adriatic Sea.
+422,piccolo,3,A small high-pitched flute,She played the piccolo in the orchestra.
+423,au revoir,3,The French way to say goodbye,Au revoir means see you later.
+424,tulle,3,A light netted fabric,The ballerina's skirt was made of tulle.
+425,boll weevil,3,An insect that damages cotton plants,The boll weevil destroyed the cotton crop.
+426,camphor,3,A substance with a strong smell,The chest smelled of camphor.
+427,Tucson,3,A city in Arizona,We visited the desert near Tucson.
+428,paparazzi,3,Photographers who follow celebrities,The paparazzi chased the movie star.
+429,pumpernickel,3,A dark heavy rye bread,I made a sandwich with pumpernickel bread.
+430,pogrom,3,An organized violent attack on a group,The history book described the terrible pogrom.
+431,bursitis,3,Inflammation of joints causing pain,His knee pain was from bursitis.
+432,pâtisserie,3,A French bakery for pastries,We bought croissants at the pâtisserie.
+433,cycads,3,Ancient palm-like plants,Cycads have existed for millions of years.
+434,sarsaparilla,3,A sweet drink flavored with plant roots,The old-fashioned soda shop sold sarsaparilla.
+435,maître d',3,The head waiter at a restaurant,The maître d' showed us to our table.
+436,cannelloni,3,Large tube-shaped pasta,The cannelloni was stuffed with cheese.
+437,boulangerie,3,A French bakery for bread,We bought fresh baguettes at the boulangerie.
+438,bronchitis,3,An infection of the breathing tubes,He had bronchitis and couldn't stop coughing.
+439,Oswego,3,A city in New York,Oswego is located on Lake Ontario.
+440,diphtheria,3,A serious throat disease,Children are vaccinated against diphtheria.
+441,baklava,3,A sweet pastry with nuts and honey,The Greek baklava was delicious.
+442,corbels,3,Supports sticking out from a wall,Stone corbels held up the balcony.
+443,trebuchets,3,Large medieval machines that throw rocks,The castle defenders used trebuchets.
+444,Kilimanjaro,3,The tallest mountain in Africa,Climbing Kilimanjaro takes several days.
+445,fräulein,3,The German word for miss or young lady,Fräulein Schmidt taught the class.
+446,protégé,3,A person guided by a mentor,The young artist was the master's protégé.
+447,hors d'oeuvres,3,Small snacks served before a meal,The waiter brought hors d'oeuvres on a tray.
+448,maquisards,3,French resistance fighters in World War II,The maquisards fought against the occupation.
+449,Aubusson,3,A type of fine French tapestry,The museum displayed an Aubusson tapestry.
+450,Charolais,3,A breed of white cattle from France,The ranch raised Charolais cattle.
