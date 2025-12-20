@@ -115,10 +115,10 @@ export function SpellingProvider({ children }: { children: React.ReactNode }) {
     if (!session) return;
 
     // Mark session as ended with timestamp
-    const endedSession = {
-      ...session,
-      endTime: Date.now(),
-    };
+    // const endedSession = {
+    //   ...session,
+    //   endTime: Date.now(),
+    // };
 
     // Could save endedSession to storage here for history
 

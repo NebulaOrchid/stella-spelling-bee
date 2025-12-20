@@ -33,7 +33,7 @@ export class SoundManager implements ISound {
         onload: () => {
           console.log(`[SOUND] ✅ Loaded: ${effect}.mp3`);
         },
-        onloaderror: (id, error) => {
+        onloaderror: (_id, error) => {
           console.warn(`[SOUND] ⚠️ Could not load ${effect}.mp3:`, error);
         },
       });
@@ -95,7 +95,7 @@ export class SoundManager implements ISound {
         resolve();
       }, soundId);
 
-      sound.once('playerror', (id, error) => {
+      sound.once('playerror', (_id, error) => {
         console.error(`[SOUND] ❌ Error playing ${effectName}:`, error);
         resolve();
       }, soundId);

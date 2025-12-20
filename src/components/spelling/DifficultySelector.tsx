@@ -1,5 +1,3 @@
-import { Button } from '../common/Button';
-
 interface DifficultySelectorProps {
   onSelectDifficulty: (difficulty: 1 | 2 | 3) => void;
 }
