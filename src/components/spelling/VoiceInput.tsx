@@ -98,7 +98,7 @@ export function VoiceInput({ autoStart = false, currentWord }: VoiceInputProps) 
         console.log('[VOICE-CMD] Definition requested!');
         try {
           const text = `${currentWord.word}. ${currentWord.definition}`;
-          const { audioUrl } = await openAIService.textToSpeech(text, 'alloy', 0.75);
+          const { audioUrl } = await openAIService.textToSpeech(text, 'shimmer', 0.75);
           await soundManager.playWord(audioUrl);
           console.log('[VOICE-CMD] Definition spoken, ready for spelling');
         } catch (error) {
@@ -113,7 +113,7 @@ export function VoiceInput({ autoStart = false, currentWord }: VoiceInputProps) 
       if (isSentenceRequest && currentWord?.sentence) {
         console.log('[VOICE-CMD] Sentence requested!');
         try {
-          const { audioUrl } = await openAIService.textToSpeech(currentWord.sentence, 'alloy', 0.75);
+          const { audioUrl } = await openAIService.textToSpeech(currentWord.sentence, 'shimmer', 0.75);
           await soundManager.playWord(audioUrl);
           console.log('[VOICE-CMD] Sentence spoken, ready for spelling');
         } catch (error) {
