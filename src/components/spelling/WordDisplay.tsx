@@ -30,7 +30,11 @@ export function WordDisplay({ word, onPronunciationComplete }: WordDisplayProps)
 
       try {
         setIsPlaying(true);
-        const { audioUrl } = await openAIService.textToSpeech(word.word, 'nova', 0.85);
+        // Say: word → definition → word again
+        const text = word.definition
+          ? `${word.word}. ${word.definition}. ${word.word}.`
+          : `${word.word}. ${word.word}.`;
+        const { audioUrl } = await openAIService.textToSpeech(text, 'nova', 1.0);
         await soundManager.playWord(audioUrl);
       } catch (error) {
         console.error('Error speaking word:', error);
@@ -52,7 +56,11 @@ export function WordDisplay({ word, onPronunciationComplete }: WordDisplayProps)
 
     try {
       setIsPlaying(true);
-      const { audioUrl } = await openAIService.textToSpeech(word.word, 'nova', 0.85);
+      // Say: word → definition → word again
+      const text = word.definition
+        ? `${word.word}. ${word.definition}. ${word.word}.`
+        : `${word.word}. ${word.word}.`;
+      const { audioUrl } = await openAIService.textToSpeech(text, 'nova', 1.0);
       await soundManager.playWord(audioUrl);
     } catch (error) {
       console.error('Error speaking word:', error);
