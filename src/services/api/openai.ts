@@ -60,8 +60,22 @@ export class OpenAIService {
    */
   async speechToText(audioBlob: Blob): Promise<WhisperResponse> {
     try {
+      // Validate blob before sending
+      console.log('[OPENAI SERVICE] Sending audio blob:', {
+        size: audioBlob.size,
+        type: audioBlob.type,
+      });
+
+      if (audioBlob.size === 0) {
+        throw new Error('Audio blob is empty');
+      }
+
       const formData = new FormData();
-      formData.append('audio', audioBlob, 'recording.webm');
+      // Explicitly create a File with webm extension
+      const audioFile = new File([audioBlob], 'recording.webm', {
+        type: 'audio/webm',
+      });
+      formData.append('audio', audioFile);
 
       const response = await fetch(`${this.baseUrl}/whisper`, {
         method: 'POST',

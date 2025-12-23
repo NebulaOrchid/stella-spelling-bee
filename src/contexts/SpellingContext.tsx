@@ -10,11 +10,12 @@ interface SpellingContextType {
   session: SpellingSession | null;
   isCorrect: boolean | null;
   showFeedback: boolean;
+  firstAttemptCorrect: Map<string, boolean>; // Track if each word was correct on first attempt
 
   // Actions
   startSession: (words: Word[]) => void;
   setCurrentAttempt: (attempt: string) => void;
-  submitAttempt: () => void;
+  submitAttempt: (spellingToSubmit?: string) => void;
   nextWord: () => void;
   endSession: () => void;
   resetFeedback: () => void;
@@ -31,6 +32,7 @@ export function SpellingProvider({ children }: { children: React.ReactNode }) {
   const [showFeedback, setShowFeedback] = useState(false);
   const [wordQueue, setWordQueue] = useState<Word[]>([]);
   const [attemptStartTime, setAttemptStartTime] = useState<number>(Date.now());
+  const [firstAttemptCorrect, setFirstAttemptCorrect] = useState<Map<string, boolean>>(new Map());
 
   const startSession = useCallback((words: Word[]) => {
     const newSession: SpellingSession = {
@@ -50,12 +52,15 @@ export function SpellingProvider({ children }: { children: React.ReactNode }) {
     setIsCorrect(null);
     setShowFeedback(false);
     setAttemptStartTime(Date.now());
+    setFirstAttemptCorrect(new Map()); // Reset first-attempt tracking
   }, []);
 
-  const submitAttempt = useCallback(() => {
+  const submitAttempt = useCallback((spellingToSubmit?: string) => {
     if (!currentWord || !session) return;
 
-    const userSpelling = currentAttempt.trim().toLowerCase();
+    // Use provided spelling or fall back to currentAttempt
+    const attemptValue = spellingToSubmit !== undefined ? spellingToSubmit : currentAttempt;
+    const userSpelling = attemptValue.trim().toLowerCase();
     const correctSpelling = currentWord.word.toLowerCase();
     const correct = userSpelling === correctSpelling;
 
@@ -70,12 +75,17 @@ export function SpellingProvider({ children }: { children: React.ReactNode }) {
     setIsCorrect(correct);
     setShowFeedback(true);
 
+    // Track first attempt correctness for star calculation
+    if (attempts === 0) {
+      setFirstAttemptCorrect(prev => new Map(prev).set(currentWord.id, correct));
+    }
+
     // Create attempt record
     const attempt: SpellingAttempt = {
       id: uuidv4(),
       wordId: currentWord.id,
       word: currentWord.word,
-      userSpelling: currentAttempt.trim(),
+      userSpelling: attemptValue.trim(),
       isCorrect: correct,
       timestamp: Date.now(),
       attempts: attempts + 1,
@@ -144,6 +154,7 @@ export function SpellingProvider({ children }: { children: React.ReactNode }) {
     session,
     isCorrect,
     showFeedback,
+    firstAttemptCorrect,
     startSession,
     setCurrentAttempt,
     submitAttempt,

@@ -55,15 +55,19 @@ export class SoundManager implements ISound {
 
       this.currentWordSound = new Howl({
         src: [audioUrl],
+        format: ['mp3'], // OpenAI TTS returns MP3 format
         volume: this.volume,
         html5: true,
         onend: () => resolve(),
+        onload: () => {
+          console.log('[SOUND] ✅ TTS audio loaded successfully');
+        },
         onloaderror: (_, error) => {
-          console.error('Error loading word audio:', error);
+          console.error('[SOUND] ❌ Error loading word audio:', error);
           reject(error);
         },
         onplayerror: (_, error) => {
-          console.error('Error playing word audio:', error);
+          console.error('[SOUND] ❌ Error playing word audio:', error);
           reject(error);
         },
       });

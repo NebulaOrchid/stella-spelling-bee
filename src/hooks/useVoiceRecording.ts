@@ -12,7 +12,7 @@ export interface VoiceRecordingState {
 const MAX_RECORDING_TIME = 60; // 60 seconds max
 const SILENCE_THRESHOLD = -42; // dB threshold for silence (closer to voice threshold to prevent dead zone)
 const VOICE_THRESHOLD = -40; // dB threshold for voice activity (louder than silence)
-const SILENCE_DURATION = 2000; // 2 seconds of silence to auto-stop (reduced for word-spell-word format)
+const SILENCE_DURATION = 3500; // 3.5 seconds of silence to auto-stop (gives time for pauses while spelling)
 const MIN_VOICE_DURATION = 500; // Minimum 500ms of voice to count as "started speaking"
 
 export function useVoiceRecording() {
@@ -37,6 +37,9 @@ export function useVoiceRecording() {
 
   // Cleanup function
   const cleanup = useCallback(() => {
+    console.log('[VOICE RECORDING] Cleanup called');
+
+    // Clear intervals
     if (countdownIntervalRef.current) {
       clearInterval(countdownIntervalRef.current);
       countdownIntervalRef.current = null;
@@ -45,10 +48,38 @@ export function useVoiceRecording() {
       clearInterval(silenceCheckIntervalRef.current);
       silenceCheckIntervalRef.current = null;
     }
-    if (audioContextRef.current) {
-      audioContextRef.current.close();
-      audioContextRef.current = null;
+
+    // Stop MediaRecorder if active (IMPORTANT!)
+    if (mediaRecorderRef.current && mediaRecorderRef.current.state !== 'inactive') {
+      try {
+        mediaRecorderRef.current.stop();
+      } catch (e) {
+        console.warn('[VOICE RECORDING] Error stopping MediaRecorder:', e);
+      }
     }
+
+    // Stop media stream tracks (IMPORTANT!)
+    if (mediaRecorderRef.current?.stream) {
+      try {
+        mediaRecorderRef.current.stream.getTracks().forEach(track => track.stop());
+      } catch (e) {
+        console.warn('[VOICE RECORDING] Error stopping tracks:', e);
+      }
+    }
+
+    // Close AudioContext (check state first to prevent UV_HANDLE_CLOSING error)
+    if (audioContextRef.current && audioContextRef.current.state !== 'closed') {
+      try {
+        audioContextRef.current.close();
+      } catch (e) {
+        console.warn('[VOICE RECORDING] Error closing AudioContext:', e);
+      }
+    }
+
+    // Clear refs
+    mediaRecorderRef.current = null;
+    audioContextRef.current = null;
+    analyserRef.current = null;
     voiceDetectedRef.current = false;
   }, []);
 

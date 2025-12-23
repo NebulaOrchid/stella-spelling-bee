@@ -53,11 +53,25 @@ export default async function handler(
     // Read the file
     const fileBuffer = fs.readFileSync(audioFile.filepath);
 
-    // Create a File object for OpenAI
+    // DIAGNOSTIC LOGGING
+    console.log('[WHISPER API] File info:', {
+      originalFilename: audioFile.originalFilename,
+      mimetype: audioFile.mimetype,
+      size: audioFile.size,
+      bufferLength: fileBuffer.length,
+    });
+
+    // Validate blob is not empty
+    if (fileBuffer.length === 0) {
+      console.error('[WHISPER API] Empty audio file received!');
+      return res.status(400).json({ error: 'Empty audio file' });
+    }
+
+    // Create a File object for OpenAI with explicit webm extension
     const file = new File(
       [fileBuffer],
-      audioFile.originalFilename || 'recording.webm',
-      { type: audioFile.mimetype || 'audio/webm' }
+      'recording.webm', // Force .webm extension
+      { type: 'audio/webm' } // Force audio/webm MIME type
     );
 
     // Initialize OpenAI client

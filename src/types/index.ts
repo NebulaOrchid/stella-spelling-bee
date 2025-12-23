@@ -80,4 +80,60 @@ export type SoundEffect =
   | 'incorrect'
   | 'celebration'
   | 'click'
-  | 'whoosh';
+  | 'whoosh'
+  | 'star-earned'
+  | 'badge-unlock'
+  | 'mini-game-start'
+  | 'mini-game-complete'
+  | 'gym-select';
+
+// Gym Adventure types
+export interface MiniGame {
+  id: string;
+  gymId: string;
+  order: 1 | 2 | 3;
+  wordIds: string[];
+}
+
+export interface Gym {
+  id: string;
+  name: string;
+  emoji: string;
+  theme: string;
+  color: string;
+  miniGames: MiniGame[];
+  wordIds: string[]; // All 25 word IDs for this gym
+}
+
+export interface MiniGameProgress {
+  miniGameId: string;
+  completed: boolean;
+  earnedStar: boolean;
+  bestScore: number;
+  attempts: number;
+  lastPlayed?: number;
+}
+
+export interface GymProgress {
+  gymId: string;
+  miniGames: MiniGameProgress[];
+  badgeUnlocked: boolean;
+  starsEarned: number; // 0-3
+  completedAt?: number;
+}
+
+export interface UserGymProgress {
+  gyms: GymProgress[];
+  totalStars: number;
+  totalBadges: number;
+  lastUpdated: number;
+}
+
+export interface MiniGameResult {
+  miniGameId: string;
+  totalWords: number;
+  correctWords: number;
+  firstAttemptCorrect: number;
+  earnedStar: boolean;
+  completedAt: number;
+}
