@@ -90,6 +90,7 @@ export class ProgressStorage {
       totalStars: 0,
       totalBadges: 0,
       lastUpdated: Date.now(),
+      wrongWords: [], // Initialize empty wrong words list
     };
   }
 
@@ -123,6 +124,7 @@ export class ProgressStorage {
       totalStars,
       totalBadges,
       lastUpdated: Date.now(),
+      wrongWords: existing.wrongWords || [], // Preserve existing wrong words or initialize empty
     };
   }
 
@@ -156,6 +158,7 @@ export class ProgressStorage {
       totalStars,
       totalBadges,
       lastUpdated: Date.now(),
+      wrongWords: progress.wrongWords, // Preserve existing wrong words
     };
   }
 

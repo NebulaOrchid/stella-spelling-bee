@@ -42,25 +42,31 @@ export function useWhisperOnlyRecording({
   const silenceStartRef = useRef<number | null>(null);
   const voiceDetectedRef = useRef<boolean>(false);
 
+  // Sustained voice tracking - prevents brief noises from triggering auto-submit
+  const voiceSustainedStartRef = useRef<number | null>(null);
+  const voiceSustainedConfirmedRef = useRef<boolean>(false);
+
   // Voice activity detection thresholds
   const VOICE_THRESHOLD = -40; // dB
   const SILENCE_THRESHOLD = -42; // dB
+  const MIN_SUSTAINED_VOICE_DURATION = 1500; // 1.5 seconds of continuous speech required
 
-  // Step progression based on time intervals (30 seconds total)
+  // Step progression based on time intervals (all 3 pokeballs light up in 10 seconds)
+  // Recording still runs for 30 seconds max, but pokeball animation completes faster
   // Step 1: 0-3 seconds (say word)
-  // Step 2: 3-25 seconds (spell letters)
-  // Step 3: 25-30 seconds (say word again)
+  // Step 2: 3-7 seconds (spell letters)
+  // Step 3: 7-10 seconds (say word again)
   const getStepFromTime = (elapsed: number): 1 | 2 | 3 => {
     if (elapsed < 3) return 1;
-    if (elapsed < 25) return 2;
+    if (elapsed < 7) return 2;
     return 3;
   };
 
   // Calculate completion for each step based on time
   const getStepCompletion = (step: 1 | 2 | 3, elapsed: number) => {
     if (step === 1) return elapsed >= 3;
-    if (step === 2) return elapsed >= 25;
-    if (step === 3) return elapsed >= recordingDuration;
+    if (step === 2) return elapsed >= 7;
+    if (step === 3) return elapsed >= 10;
     return false;
   };
 
@@ -80,33 +86,50 @@ export function useWhisperOnlyRecording({
   }, []);
 
   // Check for silence and auto-submit if detected
+  // REQUIRES SUSTAINED VOICE (1.5s) before enabling silence detection
   const checkForSilence = useCallback(() => {
     const dB = getAudioLevel();
     const now = Date.now();
 
     // Voice detected (loud enough)
     if (dB > VOICE_THRESHOLD) {
-      voiceDetectedRef.current = true;
-      silenceStartRef.current = null;
+      // Start tracking sustained voice
+      if (voiceSustainedStartRef.current === null) {
+        voiceSustainedStartRef.current = now;
+        console.log('[VAD] Voice detected, tracking duration...');
+      } else {
+        // Check if voice has been sustained long enough
+        const voiceDuration = now - voiceSustainedStartRef.current;
+        if (voiceDuration >= MIN_SUSTAINED_VOICE_DURATION && !voiceSustainedConfirmedRef.current) {
+          voiceSustainedConfirmedRef.current = true;
+          voiceDetectedRef.current = true;
+          console.log(`[VAD] ✅ SUSTAINED VOICE CONFIRMED after ${voiceDuration}ms`);
+        }
+      }
+
+      silenceStartRef.current = null; // Reset silence timer
       return;
     }
 
-    // Silence detected (below threshold)
-    if (dB < SILENCE_THRESHOLD && voiceDetectedRef.current) {
+    // Not voice - reset sustained tracking
+    voiceSustainedStartRef.current = null;
+
+    // ONLY track silence if sustained voice was confirmed
+    if (dB < SILENCE_THRESHOLD && voiceSustainedConfirmedRef.current) {
       // Start tracking silence
       if (silenceStartRef.current === null) {
         silenceStartRef.current = now;
-        console.log('[WhisperOnly] Silence detected, starting timer');
+        console.log('[VAD] Silence detected after sustained voice, starting timer');
       }
 
       // Check if silence duration exceeded
       const silenceElapsed = (now - silenceStartRef.current) / 1000;
       if (silenceElapsed >= silenceDuration) {
-        console.log(`[WhisperOnly] Silence detected for ${silenceDuration}s, auto-submitting`);
+        console.log(`[VAD] Auto-submitting after ${silenceDuration}s silence (sustained voice was confirmed)`);
         stopRecording();
       }
     } else {
-      // Not silent enough, reset
+      // Not silent enough, or sustained voice not confirmed - reset
       silenceStartRef.current = null;
     }
   }, [getAudioLevel, silenceDuration]);
@@ -122,10 +145,16 @@ export function useWhisperOnlyRecording({
       startTimeRef.current = Date.now();
       silenceStartRef.current = null;
       voiceDetectedRef.current = false;
+
+      // Reset sustained voice tracking
+      voiceSustainedStartRef.current = null;
+      voiceSustainedConfirmedRef.current = false;
+
       setTimeElapsed(0);
       setTimeRemaining(recordingDuration);
       setCurrentStep(1);
       console.log('[WhisperOnly] State reset complete - timeRemaining set to', recordingDuration);
+      console.log('[WhisperOnly] Sustained voice tracking initialized (requires 1.5s continuous speech)');
 
       // Request microphone permission
       const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
@@ -297,6 +326,11 @@ export function useWhisperOnlyRecording({
     }
 
     chunksRef.current = [];
+
+    // Reset sustained voice tracking
+    voiceSustainedStartRef.current = null;
+    voiceSustainedConfirmedRef.current = false;
+
     setIsRecording(false);
     setIsProcessing(false);
     setError(null);

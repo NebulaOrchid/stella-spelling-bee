@@ -1,6 +1,6 @@
 import React, { createContext, useContext, useState, useCallback, useEffect } from 'react';
 import type { Gym, MiniGame, Word, UserGymProgress, MiniGameResult } from '../types';
-import { distributeWordsToGyms, getGymById, getMiniGameById, getWordsForMiniGame } from '../data/gyms';
+import { distributeWordsToGyms, getGymById, getMiniGameById, getWordsForMiniGame, updateWrongGym } from '../data/gyms';
 import { ProgressStorage } from '../services/storage/progressStorage';
 import { updateGymProgress as calculateGymProgress } from '../utils/badgeCalculator';
 
@@ -42,8 +42,8 @@ interface GymProviderProps {
 }
 
 export function GymProvider({ children, allWords }: GymProviderProps) {
-  // Initialize gyms from all words
-  const [gyms] = useState<Gym[]>(() => {
+  // Initialize gyms from all words (mutable to allow Wrong Gym updates)
+  const [gyms, setGyms] = useState<Gym[]>(() => {
     console.log('[GYM CONTEXT] Initializing gyms from words');
     return distributeWordsToGyms(allWords);
   });
@@ -70,14 +70,27 @@ export function GymProvider({ children, allWords }: GymProviderProps) {
 
   // Select a gym (navigate to gym detail screen)
   const selectGym = useCallback((gymId: string) => {
-    const gym = getGymById(gyms, gymId);
-    if (gym) {
-      console.log('[GYM CONTEXT] Selected gym:', gym.name);
-      setSelectedGym(gym);
-      setSelectedMiniGame(null);
-      setMiniGameWords([]);
+    let gym = getGymById(gyms, gymId);
+    if (!gym) return;
+
+    // If Wrong Gym, update it with current wrong words
+    if (gym.type === 'wrong') {
+      console.log('[GYM CONTEXT] Updating Wrong Gym with', gymProgress.wrongWords.length, 'wrong words');
+      const updatedWrongGym = updateWrongGym(gym, gymProgress.wrongWords);
+
+      // Update gyms array with the updated Wrong Gym
+      setGyms(prevGyms =>
+        prevGyms.map(g => g.id === 'gym-wrong' ? updatedWrongGym : g)
+      );
+
+      gym = updatedWrongGym;
     }
-  }, [gyms]);
+
+    console.log('[GYM CONTEXT] Selected gym:', gym.name);
+    setSelectedGym(gym);
+    setSelectedMiniGame(null);
+    setMiniGameWords([]);
+  }, [gyms, gymProgress.wrongWords]);
 
   // Start a mini-game (navigate to spelling game)
   const startMiniGame = useCallback((miniGameId: string) => {
@@ -123,8 +136,39 @@ export function GymProvider({ children, allWords }: GymProviderProps) {
     // Update gym progress with mini-game result
     const updatedGymProgress = calculateGymProgress(currentGymProgress, result);
 
-    // Update overall progress
-    const newProgress = ProgressStorage.updateGymProgress(gymProgress, updatedGymProgress);
+    // Capture wrong words (if not in Wrong Gym itself)
+    let updatedWrongWords = [...gymProgress.wrongWords];
+    if (selectedGym.type !== 'wrong' && result.incorrectWordIds.length > 0) {
+      // Add incorrect words to wrong words list (unique only)
+      result.incorrectWordIds.forEach(wordId => {
+        if (!updatedWrongWords.includes(wordId)) {
+          updatedWrongWords.push(wordId);
+          console.log(`[GYM CONTEXT] Added word ${wordId} to Wrong Gym`);
+        }
+      });
+    } else if (selectedGym.type === 'wrong' && result.incorrectWordIds.length === 0) {
+      // If in Wrong Gym and all words were spelled correctly, remove them
+      // Find which words were in this mini-game and were spelled correctly
+      const miniGameWordIds = selectedMiniGame?.wordIds || [];
+      const correctedWords = miniGameWordIds.filter(
+        wordId => !result.incorrectWordIds.includes(wordId)
+      );
+
+      // Remove corrected words from wrong words list
+      correctedWords.forEach(wordId => {
+        const index = updatedWrongWords.indexOf(wordId);
+        if (index > -1) {
+          updatedWrongWords.splice(index, 1);
+          console.log(`[GYM CONTEXT] Removed corrected word ${wordId} from Wrong Gym`);
+        }
+      });
+    }
+
+    // Update overall progress with wrong words
+    const newProgress = {
+      ...ProgressStorage.updateGymProgress(gymProgress, updatedGymProgress),
+      wrongWords: updatedWrongWords,
+    };
     setGymProgress(newProgress);
 
     // Trigger celebrations
@@ -144,7 +188,7 @@ export function GymProvider({ children, allWords }: GymProviderProps) {
     // Return to gym detail after celebrations
     setSelectedMiniGame(null);
     setMiniGameWords([]);
-  }, [selectedGym, gymProgress]);
+  }, [selectedGym, selectedMiniGame, gymProgress]);
 
   // Dismiss celebration and continue
   const dismissCelebration = useCallback(() => {

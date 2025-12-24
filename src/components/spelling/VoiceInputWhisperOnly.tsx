@@ -1,10 +1,10 @@
 import { useState, useEffect, useRef } from 'react';
 import { useSpelling } from '../../contexts/SpellingContext';
+import { useGym } from '../../contexts/GymContext';
 import { extractSpellingPattern } from '../../utils/patternExtractor';
 import { useWhisperOnlyRecording } from '../../hooks/useWhisperOnlyRecording';
 import { BigPokeballListening } from './pokemon/BigPokeballListening';
-import { ThreePokeballProgress } from './pokemon/ThreePokeballProgress';
-import { EeveeProcessing } from './pokemon/EeveeProcessing';
+import { PokemonCoach } from './pokemon/PokemonCoach';
 import { Button } from '../common/Button';
 import type { Word } from '../../types';
 
@@ -35,6 +35,7 @@ export function VoiceInputWhisperOnly({
   const [phase, setPhase] = useState<GamePhase>('RECORDING');
   const [recordingStarted, setRecordingStarted] = useState(false);
   const { setCurrentAttempt, submitAttempt } = useSpelling();
+  const { selectedGym } = useGym();
   const spellingToSubmitRef = useRef<string>('');
 
   // Reset recording state when word changes
@@ -71,22 +72,18 @@ export function VoiceInputWhisperOnly({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPronouncingWord, recordingStarted]);
 
-  // Whisper-only recording hook with 30s max time and 1.5s silence detection
+  // Whisper-only recording hook with 30s max time and 3s silence detection
   const {
     isRecording,
     isProcessing,
     error,
-    currentStep,
     timeElapsed,
     timeRemaining,
-    step1Complete,
-    step2Complete,
-    step3Complete,
     startRecording,
-    cancelRecording,
+    stopRecording,
   } = useWhisperOnlyRecording({
     recordingDuration: 30,
-    silenceDuration: 1.5,
+    silenceDuration: 3.0, // 3 seconds - gives kids time to pause between letters
     onComplete: handleRecordingComplete,
   });
 
@@ -172,10 +169,10 @@ export function VoiceInputWhisperOnly({
     submitAttempt(finalSpelling);
   }
 
-  // Handle cancel
-  const handleCancel = () => {
-    cancelRecording();
-    setPhase('RECORDING');
+  // Handle manual submit - user clicks Submit button to process recording immediately
+  const handleManualSubmit = () => {
+    console.log('[VoiceInputWhisper] Manual submit clicked - stopping recording');
+    stopRecording();
   };
 
   // Update phase based on recording state
@@ -189,10 +186,10 @@ export function VoiceInputWhisperOnly({
 
   // Unified screen showing all phases
   return (
-    <div className="card space-y-6">
+    <div className="card space-y-3">
       {/* Error State */}
       {error && (
-        <div className="text-center p-6 bg-error/10 border-2 border-error rounded-lg">
+        <div className="text-center p-4 bg-error/10 border-2 border-error rounded-lg">
           <p className="text-lg font-semibold text-error mb-2">⚠️ Recording Error</p>
           <p className="text-sm text-text-muted">{error}</p>
           <Button
@@ -213,12 +210,13 @@ export function VoiceInputWhisperOnly({
         </div>
       )}
 
-      {/* Game Screen: Big pokeball on top + 3 pokeballs on bottom */}
+      {/* Game Screen: Big pokeball on top + Pokemon Coach below */}
       {!error && (isPronouncingWord || phase === 'RECORDING') && (
-        <div className="space-y-6">
+        <div className="space-y-3">
           {/* Big pokeball on top */}
           <BigPokeballListening
             gymColor={gymColor}
+            gymType={selectedGym?.name}
             message={isPronouncingWord
               ? "Listen carefully..."
               : "Speak now: Word → Spell it → Word again"
@@ -227,52 +225,55 @@ export function VoiceInputWhisperOnly({
             timeRemaining={!isPronouncingWord && recordingStarted ? timeRemaining : undefined}
           />
 
-          {/* 3 pokeballs on bottom - always shown */}
-          <div className="space-y-4">
-            <ThreePokeballProgress
-              color={gymColor}
-              currentStep={!isPronouncingWord && recordingStarted ? currentStep : 1}
-              step1Complete={!isPronouncingWord && recordingStarted ? step1Complete : false}
-              step2Complete={!isPronouncingWord && recordingStarted ? step2Complete : false}
-              step3Complete={!isPronouncingWord && recordingStarted ? step3Complete : false}
-              step1Text={null}
-              step2Text={undefined}
-              isSubmitting={false}
-              timeRemaining={!isPronouncingWord && recordingStarted ? timeRemaining : undefined}
-            />
+          {/* Pokemon Coach - animated character below pokeball */}
+          <PokemonCoach
+            phase={isPronouncingWord ? 'listening' : 'recording'}
+            gymColor={gymColor}
+            gymType={selectedGym?.name}
+          />
 
-            {/* Progress bar during recording only */}
-            {phase === 'RECORDING' && !isPronouncingWord && (
-              <>
-                <div className="w-full bg-surface rounded-full h-3 overflow-hidden">
-                  <div
-                    className="h-full transition-all duration-100"
-                    style={{
-                      width: `${(timeElapsed / 30) * 100}%`,
-                      backgroundColor: gymColor,
-                    }}
-                  />
-                </div>
+          {/* Progress bar and controls during recording only */}
+          {phase === 'RECORDING' && !isPronouncingWord && (
+            <div className="space-y-3">
+              <div className="w-full bg-surface rounded-full h-2 overflow-hidden">
+                <div
+                  className="h-full transition-all duration-100"
+                  style={{
+                    width: `${(timeElapsed / 30) * 100}%`,
+                    backgroundColor: gymColor,
+                  }}
+                />
+              </div>
 
-                <p className="text-sm text-text-muted text-center">
-                  Auto-submits after 1.5s silence
-                </p>
+              <p className="text-xs text-text-muted text-center">
+                Auto-submits after 3s silence
+              </p>
 
-                {/* Cancel button */}
-                <div className="text-center">
-                  <Button variant="error" size="sm" onClick={handleCancel}>
-                    Cancel
-                  </Button>
-                </div>
-              </>
-            )}
-          </div>
+              {/* Submit button - always visible, allows manual submit */}
+              <div className="text-center">
+                <Button
+                  variant="primary"
+                  size="md"
+                  onClick={handleManualSubmit}
+                  style={{ backgroundColor: gymColor }}
+                >
+                  Submit
+                </Button>
+              </div>
+            </div>
+          )}
         </div>
       )}
 
-      {/* Phase: PROCESSING - Show Eevee processing animation */}
+      {/* Phase: PROCESSING - Show Pokemon Coach thinking */}
       {!error && phase === 'PROCESSING' && (
-        <EeveeProcessing gymColor={gymColor} />
+        <div className="space-y-3">
+          <PokemonCoach
+            phase="processing"
+            gymColor={gymColor}
+            gymType={selectedGym?.name}
+          />
+        </div>
       )}
     </div>
   );

@@ -21,6 +21,24 @@ export function InteractiveWordTracing({ word, color, onComplete }: InteractiveW
   const [revealedLetters, setRevealedLetters] = useState<number>(0);
   const letters = word.toUpperCase().split('');
 
+  // Calculate letter size based on word length for mobile responsiveness
+  // Shorter words = bigger letters, longer words = smaller letters
+  // Keep on ONE row with horizontal scroll if needed
+  const getLetterSize = () => {
+    const letterCount = letters.length;
+    if (letterCount <= 4) {
+      return { width: 70, height: 100, fontSize: 'text-6xl' }; // Large for short words
+    } else if (letterCount <= 7) {
+      return { width: 60, height: 90, fontSize: 'text-5xl' }; // Medium for medium words
+    } else if (letterCount <= 10) {
+      return { width: 50, height: 75, fontSize: 'text-4xl' }; // Smaller for long words
+    } else {
+      return { width: 45, height: 70, fontSize: 'text-3xl' }; // Smallest for very long words
+    }
+  };
+
+  const letterSize = getLetterSize();
+
   useEffect(() => {
     // Reset when word changes
     setRevealedLetters(0);
@@ -44,7 +62,8 @@ export function InteractiveWordTracing({ word, color, onComplete }: InteractiveW
   }, [word, letters.length, onComplete]);
 
   return (
-    <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-4 px-2">
+    <div className="overflow-x-auto overflow-y-hidden pb-4 hide-scrollbar">
+      <div className="flex flex-nowrap items-center justify-center gap-2 min-w-max px-2">
       {letters.map((letter, index) => {
         const isRevealed = index < revealedLetters;
 
@@ -88,13 +107,13 @@ export function InteractiveWordTracing({ word, color, onComplete }: InteractiveW
               }}
               className="relative flex items-center justify-center rounded-2xl border-4 shadow-2xl"
               style={{
-                width: '80px',
-                height: '120px',
+                width: `${letterSize.width}px`,
+                height: `${letterSize.height}px`,
                 backgroundColor: color,
                 borderColor: `${color}dd`,
               }}
             >
-              <span className="text-7xl font-bold text-white drop-shadow-lg">
+              <span className={`${letterSize.fontSize} font-bold text-white drop-shadow-lg`}>
                 {letter}
               </span>
 
@@ -145,6 +164,7 @@ export function InteractiveWordTracing({ word, color, onComplete }: InteractiveW
           </motion.div>
         );
       })}
+    </div>
     </div>
   );
 }

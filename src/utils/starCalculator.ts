@@ -28,6 +28,18 @@ export function calculateMiniGameResult(
     wordAttempts.filter(a => a.isCorrect).map(a => a.wordId)
   ).size;
 
+  // Find words that were spelled incorrectly (for Wrong Gym)
+  // A word is incorrect if it was NEVER spelled correctly
+  const incorrectWordIds = firstAttemptArray
+    .filter(firstAttempt => {
+      // Check if this word was EVER spelled correctly (including retries)
+      const wasEventuallyCorrect = wordAttempts.some(
+        a => a.wordId === firstAttempt.wordId && a.isCorrect
+      );
+      return !wasEventuallyCorrect; // Include word if it was never correct
+    })
+    .map(a => a.wordId);
+
   // Earn star ONLY if ALL words were correct on first attempt
   const earnedStar = firstAttemptCorrect === totalWords && totalWords > 0;
 
@@ -35,6 +47,7 @@ export function calculateMiniGameResult(
     totalWords,
     firstAttemptCorrect,
     allCorrectWords,
+    incorrectWordIds,
     earnedStar,
   });
 
@@ -45,6 +58,7 @@ export function calculateMiniGameResult(
     firstAttemptCorrect,
     earnedStar,
     completedAt: Date.now(),
+    incorrectWordIds, // Words that were never spelled correctly
   };
 }
 

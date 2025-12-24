@@ -17,7 +17,7 @@ export function GymSelection() {
           Spelling Gym Adventure
         </h1>
         <p className="text-xl text-text-secondary mb-4">
-          Collect all 18 badges by mastering spelling challenges!
+          Collect all 19 badges by mastering spelling challenges!
         </p>
 
         {/* Progress summary */}
@@ -25,12 +25,12 @@ export function GymSelection() {
           <div className="flex items-center gap-2">
             <span className="text-3xl">⭐</span>
             <span className="font-bold">{gymProgress.totalStars}</span>
-            <span className="text-text-muted">/ 54 stars</span>
+            <span className="text-text-muted">/ 57 stars</span>
           </div>
           <div className="flex items-center gap-2">
             <span className="text-3xl">🏆</span>
             <span className="font-bold">{gymProgress.totalBadges}</span>
-            <span className="text-text-muted">/ 18 badges</span>
+            <span className="text-text-muted">/ 19 badges</span>
           </div>
         </div>
       </div>

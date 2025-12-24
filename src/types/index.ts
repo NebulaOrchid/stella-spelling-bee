@@ -102,7 +102,8 @@ export interface Gym {
   theme: string;
   color: string;
   miniGames: MiniGame[];
-  wordIds: string[]; // All 25 word IDs for this gym
+  wordIds: string[]; // All 25 word IDs for this gym (empty for Wrong Gym - dynamically populated)
+  type?: 'normal' | 'wrong'; // 'wrong' for the special Wrong Gym that tracks incorrect words
 }
 
 export interface MiniGameProgress {
@@ -127,6 +128,7 @@ export interface UserGymProgress {
   totalStars: number;
   totalBadges: number;
   lastUpdated: number;
+  wrongWords: string[]; // Word IDs of incorrectly spelled words (unique, for Wrong Gym)
 }
 
 export interface MiniGameResult {
@@ -136,4 +138,5 @@ export interface MiniGameResult {
   firstAttemptCorrect: number;
   earnedStar: boolean;
   completedAt: number;
+  incorrectWordIds: string[]; // Word IDs that were spelled incorrectly (for Wrong Gym)
 }
