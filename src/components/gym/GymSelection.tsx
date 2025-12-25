@@ -1,10 +1,10 @@
 import { useGym } from '../../contexts/GymContext';
-import { GymBadge } from './GymBadge';
+import { GymCard } from './GymCard';
 import { ProgressStorage } from '../../services/storage/progressStorage';
 
 /**
  * Gym Selection Screen
- * Shows all 18 gym badges in a grid
+ * Shows all 19 gym badges in a grid with image-based cards
  */
 export function GymSelection() {
   const { gyms, gymProgress, selectGym } = useGym();
@@ -35,17 +35,17 @@ export function GymSelection() {
         </div>
       </div>
 
-      {/* Gym grid */}
-      <div className="grid grid-cols-3 md:grid-cols-6 gap-4 max-w-7xl mx-auto">
+      {/* Gym grid - Portrait card layout */}
+      <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-6 max-w-7xl mx-auto">
         {gyms.map(gym => {
           const progress = ProgressStorage.getGymProgress(gymProgress, gym.id);
           if (!progress) return null;
 
           return (
-            <GymBadge
+            <GymCard
               key={gym.id}
               gym={gym}
-              progress={progress}
+              stars={progress.starsEarned}
               onClick={() => selectGym(gym.id)}
             />
           );

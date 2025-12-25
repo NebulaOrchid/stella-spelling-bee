@@ -99,6 +99,7 @@ export interface Gym {
   id: string;
   name: string;
   emoji: string;
+  imageUrl?: string; // Optional: Path to gym badge image (e.g., '/images/gyms/fire-gym.png')
   theme: string;
   color: string;
   miniGames: MiniGame[];

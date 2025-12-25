@@ -1,31 +1,32 @@
 import type { Gym, MiniGame, Word } from '../types';
 
-// 18 Pokemon-inspired gym themes + 1 Wrong Gym
+// 18 Pokemon-type gym themes + 1 Wrong Gym
 export const GYM_THEMES = [
-  { name: 'Flame Badge', emoji: '🔥', theme: 'Fire', color: '#ef4444' },
-  { name: 'Water Badge', emoji: '💧', theme: 'Water', color: '#3b82f6' },
-  { name: 'Electric Badge', emoji: '⚡', theme: 'Electric', color: '#eab308' },
-  { name: 'Nature Badge', emoji: '🌿', theme: 'Nature', color: '#22c55e' },
-  { name: 'Ice Badge', emoji: '❄️', theme: 'Ice', color: '#06b6d4' },
-  { name: 'Rock Badge', emoji: '🪨', theme: 'Rock', color: '#92400e' },
-  { name: 'Sky Badge', emoji: '☁️', theme: 'Sky', color: '#7dd3fc' },
-  { name: 'Shadow Badge', emoji: '🌙', theme: 'Shadow', color: '#9333ea' },
-  { name: 'Crystal Badge', emoji: '💎', theme: 'Crystal', color: '#ec4899' },
-  { name: 'Desert Badge', emoji: '🏜️', theme: 'Desert', color: '#f97316' },
-  { name: 'Ocean Badge', emoji: '🌊', theme: 'Ocean', color: '#14b8a6' },
-  { name: 'Forest Badge', emoji: '🌲', theme: 'Forest', color: '#15803d' },
-  { name: 'Mountain Badge', emoji: '⛰️', theme: 'Mountain', color: '#6b7280' },
-  { name: 'Star Badge', emoji: '⭐', theme: 'Star', color: '#fbbf24' },
-  { name: 'Dragon Badge', emoji: '🐉', theme: 'Dragon', color: '#8b5cf6' },
-  { name: 'Rainbow Badge', emoji: '🌈', theme: 'Rainbow', color: '#ec4899' },
-  { name: 'Thunder Badge', emoji: '🌩️', theme: 'Thunder', color: '#6366f1' },
-  { name: 'Master Badge', emoji: '👑', theme: 'Master', color: '#a3a3a3' },
+  { name: 'Flame Badge', emoji: '🔥', imageUrl: '/images/gyms/fire-gym.png', theme: 'Fire', color: '#ef4444' },
+  { name: 'Cascade Badge', emoji: '💧', imageUrl: '/images/gyms/water-gym.png', theme: 'Water', color: '#3b82f6' },
+  { name: 'Thunder Badge', emoji: '⚡', imageUrl: '/images/gyms/electric-gym.png', theme: 'Electric', color: '#eab308' },
+  { name: 'Rainbow Badge', emoji: '🌿', imageUrl: '/images/gyms/grass-gym.png', theme: 'Grass', color: '#22c55e' },
+  { name: 'Glacier Badge', emoji: '❄️', imageUrl: '/images/gyms/ice-gym.png', theme: 'Ice', color: '#06b6d4' },
+  { name: 'Boulder Badge', emoji: '🪨', imageUrl: '/images/gyms/rock-gym.png', theme: 'Rock', color: '#92400e' },
+  { name: 'Zephyr Badge', emoji: '🦅', imageUrl: '/images/gyms/flying-gym.png', theme: 'Flying', color: '#7dd3fc' },
+  { name: 'Fog Badge', emoji: '👻', imageUrl: '/images/gyms/ghost-gym.png', theme: 'Ghost', color: '#9333ea' },
+  { name: 'Rising Badge', emoji: '🐉', imageUrl: '/images/gyms/dragon-gym.png', theme: 'Dragon', color: '#8b5cf6' },
+  { name: 'Toxic Badge', emoji: '☠️', imageUrl: '/images/gyms/poison-gym.png', theme: 'Poison', color: '#a855f7' },
+  { name: 'Earth Badge', emoji: '⛰️', imageUrl: '/images/gyms/ground-gym.png', theme: 'Ground', color: '#d97706' },
+  { name: 'Marsh Badge', emoji: '🔮', imageUrl: '/images/gyms/psychic-gym.png', theme: 'Psychic', color: '#ec4899' },
+  { name: 'Hive Badge', emoji: '🐛', imageUrl: '/images/gyms/bug-gym.png', theme: 'Bug', color: '#84cc16' },
+  { name: 'Plain Badge', emoji: '⭐', imageUrl: '/images/gyms/normal-gym.png', theme: 'Normal', color: '#a3a3a3' },
+  { name: 'Knuckle Badge', emoji: '🥊', imageUrl: '/images/gyms/fighting-gym.png', theme: 'Fighting', color: '#dc2626' },
+  { name: 'Iron Badge', emoji: '⚙️', imageUrl: '/images/gyms/steel-gym.png', theme: 'Steel', color: '#71717a' },
+  { name: 'Eclipse Badge', emoji: '🌙', imageUrl: '/images/gyms/dark-gym.png', theme: 'Dark', color: '#1f2937' },
+  { name: 'Fairy Badge', emoji: '🧚', imageUrl: '/images/gyms/fairy-gym.png', theme: 'Fairy', color: '#f9a8d4' },
 ];
 
 // Special Wrong Gym theme (19th gym)
 export const WRONG_GYM_THEME = {
   name: 'Wrong Gym',
   emoji: '🔄', // Ditto emoji (using retry/transform symbol)
+  imageUrl: '/images/gyms/wrong-gym.png',
   theme: 'Wrong',
   color: '#ef4444', // Red for incorrect/wrong
 };
@@ -156,6 +157,7 @@ export function distributeWordsToGyms(allWords: Word[]): Gym[] {
       id: gymId,
       name: gymTheme.name,
       emoji: gymTheme.emoji,
+      imageUrl: (gymTheme as any).imageUrl, // Optional image URL (if provided in theme)
       theme: gymTheme.theme,
       color: gymTheme.color,
       miniGames,
@@ -170,6 +172,7 @@ export function distributeWordsToGyms(allWords: Word[]): Gym[] {
     id: 'gym-wrong',
     name: WRONG_GYM_THEME.name,
     emoji: WRONG_GYM_THEME.emoji,
+    imageUrl: (WRONG_GYM_THEME as any).imageUrl,
     theme: WRONG_GYM_THEME.theme,
     color: WRONG_GYM_THEME.color,
     type: 'wrong',
