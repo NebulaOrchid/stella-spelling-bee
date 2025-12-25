@@ -136,6 +136,7 @@ function arePhoneticallySimilar(word1: string, word2: string): boolean {
 
 /**
  * Extract single-letter tokens between two positions
+ * Handles "space" token to support multi-word spellings (e.g., "sans serif")
  */
 export function extractLettersBetween(
   tokens: string[],
@@ -144,13 +145,32 @@ export function extractLettersBetween(
 ): string[] {
   const letters: string[] = [];
 
+  // DEBUG: Log extraction parameters
+  console.log('[LETTER EXTRACT DEBUG] startIdx:', startIdx, 'endIdx:', endIdx);
+  console.log('[LETTER EXTRACT DEBUG] Tokens to check:', tokens.slice(startIdx + 1, endIdx));
+
   // Extract tokens between start and end (exclusive)
   for (let i = startIdx + 1; i < endIdx; i++) {
+    const token = tokens[i].toLowerCase().trim();
+
+    // DEBUG: Log each token check
+    console.log('[LETTER EXTRACT DEBUG] Checking token [' + i + ']:', `"${tokens[i]}"`, 'isSingleLetter:', isSingleLetter(tokens[i]));
+
+    // Check if it's a single letter
     if (isSingleLetter(tokens[i])) {
       letters.push(tokens[i].toUpperCase());
+      console.log('[LETTER EXTRACT DEBUG] Added letter:', tokens[i].toUpperCase());
+    }
+    // Check if kid explicitly said "space" for multi-word spellings
+    else if (token === 'space' || token === 'spacebar') {
+      letters.push(' '); // Add actual space character
+      console.log('[LETTER EXTRACT DEBUG] Added space');
+    } else {
+      console.log('[LETTER EXTRACT DEBUG] Skipped token (not a letter):', `"${tokens[i]}"`);
     }
   }
 
+  console.log('[LETTER EXTRACT DEBUG] Final extracted letters:', letters);
   return letters;
 }
 
@@ -241,6 +261,12 @@ export function extractSpellingPattern(
   expectedWord: string
 ): PatternExtractionResult {
   const tokens = tokenize(transcription);
+
+  // DEBUG: Log tokenization results
+  console.log('[PATTERN DEBUG] Original transcription:', transcription);
+  console.log('[PATTERN DEBUG] Tokens array:', tokens);
+  console.log('[PATTERN DEBUG] Token count:', tokens.length);
+
   const issues: string[] = [];
 
   // Initialize result structure

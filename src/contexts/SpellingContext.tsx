@@ -62,12 +62,23 @@ export function SpellingProvider({ children }: { children: React.ReactNode }) {
     const attemptValue = spellingToSubmit !== undefined ? spellingToSubmit : currentAttempt;
     const userSpelling = attemptValue.trim().toLowerCase();
     const correctSpelling = currentWord.word.toLowerCase();
-    const correct = userSpelling === correctSpelling;
+
+    // For multi-word spellings (e.g., "sans serif"), accept both:
+    // 1. Exact match with space: "sans serif"
+    // 2. Without space: "sansserif"
+    const correctSpellingNoSpaces = correctSpelling.replace(/\s/g, '');
+    const userSpellingNoSpaces = userSpelling.replace(/\s/g, '');
+
+    const correct =
+      userSpelling === correctSpelling || // Exact match (kid said "space")
+      userSpellingNoSpaces === correctSpellingNoSpaces; // Match without spaces (kid didn't say "space")
 
     // DEBUG: Log the comparison
     console.log('[VALIDATION] Comparing:');
     console.log('  User spelled:', `"${userSpelling}"`, '(length:', userSpelling.length, ')');
+    console.log('  User no spaces:', `"${userSpellingNoSpaces}"`);
     console.log('  Correct word:', `"${correctSpelling}"`, '(length:', correctSpelling.length, ')');
+    console.log('  Correct no spaces:', `"${correctSpellingNoSpaces}"`);
     console.log('  Match:', correct);
     console.log('  User bytes:', Array.from(userSpelling).map(c => c.charCodeAt(0)));
     console.log('  Correct bytes:', Array.from(correctSpelling).map(c => c.charCodeAt(0)));

@@ -46,10 +46,10 @@ function shuffle<T>(array: T[]): T[] {
  * Each gym is split into 3 mini-games: 8 words, 8 words, 9 words
  */
 export function distributeWordsToGyms(allWords: Word[]): Gym[] {
-  // Separate words by difficulty and shuffle to randomize distribution
-  const oneBee = shuffle([...allWords.filter(w => w.difficulty === 1)]);
-  const twoBee = shuffle([...allWords.filter(w => w.difficulty === 2)]);
-  const threeBee = shuffle([...allWords.filter(w => w.difficulty === 3)]);
+  // Separate words by difficulty (NO shuffle - keep consistent distribution)
+  const oneBee = allWords.filter(w => w.difficulty === 1);
+  const twoBee = allWords.filter(w => w.difficulty === 2);
+  const threeBee = allWords.filter(w => w.difficulty === 3);
 
   console.log(`[GYMS] Distributing words: ${oneBee.length} one-bee, ${twoBee.length} two-bee, ${threeBee.length} three-bee`);
 
@@ -110,35 +110,47 @@ export function distributeWordsToGyms(allWords: Word[]): Gym[] {
       else miniGame3Words.push(word.id);
     });
 
-    // Shuffle each mini-game's words to mix difficulties within the game
-    const shuffledMG1 = shuffle(miniGame1Words);
-    const shuffledMG2 = shuffle(miniGame2Words);
-    const shuffledMG3 = shuffle(miniGame3Words);
+    // Keep mini-game words consistent (NO shuffle here - shuffled during gameplay)
+    console.log(`[GYMS] Gym ${i + 1} mini-games: MG1=${miniGame1Words.length}, MG2=${miniGame2Words.length}, MG3=${miniGame3Words.length}`);
 
-    console.log(`[GYMS] Gym ${i + 1} mini-games: MG1=${shuffledMG1.length}, MG2=${shuffledMG2.length}, MG3=${shuffledMG3.length}`);
+    // VALIDATION: Count difficulty levels in each mini-game
+    const validateMiniGame = (wordIds: string[], mgName: string) => {
+      const difficulties = wordIds.map(id => {
+        const word = allWords.find(w => w.id === id);
+        return word?.difficulty || 0;
+      });
+      const oneBeeCount = difficulties.filter(d => d === 1).length;
+      const twoBeeCount = difficulties.filter(d => d === 2).length;
+      const threeBeeCount = difficulties.filter(d => d === 3).length;
+      console.log(`[GYMS VALIDATION] Gym ${i + 1} ${mgName}: ${oneBeeCount} one-bee, ${twoBeeCount} two-bee, ${threeBeeCount} three-bee`);
+    };
+
+    validateMiniGame(miniGame1Words, 'MG1');
+    validateMiniGame(miniGame2Words, 'MG2');
+    validateMiniGame(miniGame3Words, 'MG3');
 
     const miniGames: MiniGame[] = [
       {
         id: `${gymId}-mg-01`,
         gymId,
         order: 1,
-        wordIds: shuffledMG1,
+        wordIds: miniGame1Words,
       },
       {
         id: `${gymId}-mg-02`,
         gymId,
         order: 2,
-        wordIds: shuffledMG2,
+        wordIds: miniGame2Words,
       },
       {
         id: `${gymId}-mg-03`,
         gymId,
         order: 3,
-        wordIds: shuffledMG3,
+        wordIds: miniGame3Words,
       },
     ];
 
-    const wordIds = [...shuffledMG1, ...shuffledMG2, ...shuffledMG3];
+    const wordIds = [...miniGame1Words, ...miniGame2Words, ...miniGame3Words];
 
     const gym: Gym = {
       id: gymId,
