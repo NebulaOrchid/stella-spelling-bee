@@ -1,70 +1,19 @@
-import { useEffect, useState, useCallback, useRef } from 'react';
+import { useEffect } from 'react';
 import confetti from 'canvas-confetti';
 import { motion } from 'framer-motion';
 import { Button } from '../common/Button';
 import { useSpelling } from '../../contexts/SpellingContext';
 import { useGym } from '../../contexts/GymContext';
 import { soundManager } from '../../services/sound';
-import { useVoiceRecording } from '../../hooks/useVoiceRecording';
 import { InteractiveWordTracing } from './pokemon/InteractiveWordTracing';
 import { PokemonCelebration } from './pokemon/PokemonCelebration';
 
 export function Feedback() {
   const { isCorrect, currentWord, currentAttempt, nextWord } = useSpelling();
   const { selectedGym } = useGym();
-  const [isListeningForCommand, setIsListeningForCommand] = useState(false);
-  const hasStartedListeningRef = useRef(false);
 
   const gymColor = selectedGym?.color || '#3b82f6';
   const gymEmoji = selectedGym?.emoji || '⚡';
-
-  const {
-    isRecording,
-    isProcessing,
-    startRecording,
-    stopRecording,
-    setAutoStopCallback
-  } = useVoiceRecording();
-
-  // Handle voice command auto-stop
-  const handleCommandAutoStop = useCallback(async () => {
-    console.log('[VOICE-CMD] Auto-stop triggered, processing command...');
-    try {
-      const transcription = await stopRecording();
-      console.log('[VOICE-CMD] Received:', transcription);
-
-      if (!transcription || transcription.trim() === '') {
-        console.log('[VOICE-CMD] No command detected, still waiting...');
-        setIsListeningForCommand(false);
-        return;
-      }
-
-      // Normalize transcription
-      const command = transcription.trim().toLowerCase();
-      console.log('[VOICE-CMD] Normalized:', command);
-
-      // Check if it matches any of the next word commands
-      const nextWordCommands = ['next word', 'next', 'continue', 'go'];
-      const isNextCommand = nextWordCommands.some(cmd => command.includes(cmd));
-
-      if (isNextCommand) {
-        console.log('[VOICE-CMD] ✅ Next word command detected! Moving to next word...');
-        setIsListeningForCommand(false);
-        nextWord();
-      } else {
-        console.log('[VOICE-CMD] ❌ Command not recognized, still waiting...');
-        setIsListeningForCommand(false);
-      }
-    } catch (error) {
-      console.error('[VOICE-CMD] Error processing command:', error);
-      setIsListeningForCommand(false);
-    }
-  }, [stopRecording, nextWord]);
-
-  // Register the command auto-stop callback
-  useEffect(() => {
-    setAutoStopCallback(handleCommandAutoStop);
-  }, [setAutoStopCallback, handleCommandAutoStop]);
 
   // Play sound effects and trigger enhanced confetti
   useEffect(() => {
@@ -119,26 +68,6 @@ export function Feedback() {
       soundManager.playEffect('incorrect').catch(console.error);
     }
   }, [isCorrect, gymColor]);
-
-  // Auto-start voice command listening when feedback appears
-  useEffect(() => {
-    if (isCorrect !== null && !hasStartedListeningRef.current && !isRecording) {
-      console.log('[VOICE-CMD] Feedback shown, starting voice command listening...');
-      hasStartedListeningRef.current = true;
-      setIsListeningForCommand(true);
-
-      // Small delay to let feedback show before starting recording
-      setTimeout(() => {
-        startRecording();
-      }, 1000);
-    }
-
-    // Reset when feedback is cleared
-    if (isCorrect === null) {
-      hasStartedListeningRef.current = false;
-      setIsListeningForCommand(false);
-    }
-  }, [isCorrect, isRecording, startRecording]);
 
   if (isCorrect === null || !currentWord) return null;
 
@@ -298,20 +227,6 @@ export function Feedback() {
             <Button variant="primary" size="lg" onClick={nextWord}>
               Next Word →
             </Button>
-
-            {/* Voice command indicator */}
-            {isListeningForCommand && (
-              <div className="flex items-center justify-center gap-2 text-sm text-primary animate-pulse">
-                <span className="inline-block w-2 h-2 rounded-full bg-primary animate-ping"></span>
-                <span className="font-semibold">🎤 Say "next word" or click button</span>
-              </div>
-            )}
-
-            {!isListeningForCommand && !isRecording && !isProcessing && (
-              <div className="text-xs text-text-muted">
-                💡 Tip: You can say "next word" to continue!
-              </div>
-            )}
           </motion.div>
         </div>
       </div>
