@@ -21,20 +21,50 @@ export function InteractiveWordTracing({ word, color, onComplete }: InteractiveW
   const [revealedLetters, setRevealedLetters] = useState<number>(0);
   const letters = word.toUpperCase().split('');
 
-  // Calculate letter size based on word length for mobile responsiveness
-  // Shorter words = bigger letters, longer words = smaller letters
-  // Keep on ONE row with horizontal scroll if needed
+  // Dynamic letter size calculation based on screen width
+  // Guarantees word fits in ONE row on ANY device (iPhone, iPad, desktop)
   const getLetterSize = () => {
     const letterCount = letters.length;
-    if (letterCount <= 4) {
-      return { width: 70, height: 100, fontSize: 'text-6xl' }; // Large for short words
-    } else if (letterCount <= 7) {
-      return { width: 60, height: 90, fontSize: 'text-5xl' }; // Medium for medium words
-    } else if (letterCount <= 10) {
-      return { width: 50, height: 75, fontSize: 'text-4xl' }; // Smaller for long words
+
+    // Get available screen width
+    const screenWidth = typeof window !== 'undefined' ? window.innerWidth : 768;
+
+    // Account for padding and gaps
+    const containerPadding = 32; // 16px left + 16px right (px-4 on mobile)
+    const gapBetweenLetters = 8; // gap-2 in Tailwind = 0.5rem = 8px
+    const totalGap = gapBetweenLetters * (letterCount - 1);
+    const availableWidth = screenWidth - containerPadding - totalGap;
+
+    // Calculate ideal letter width to fit screen
+    const idealWidth = availableWidth / letterCount;
+
+    // Cap between minimum and maximum for readability
+    const MIN_WIDTH = 25;  // Minimum to keep text readable
+    const MAX_WIDTH = 70;  // Maximum to prevent huge letters on desktop
+    const letterWidth = Math.max(MIN_WIDTH, Math.min(MAX_WIDTH, idealWidth));
+
+    // Calculate proportional height (roughly 1.4x width for good proportions)
+    const letterHeight = letterWidth * 1.4;
+
+    // Determine font size based on letter width
+    let fontSize: string;
+    if (letterWidth >= 60) {
+      fontSize = 'text-6xl'; // 60px
+    } else if (letterWidth >= 50) {
+      fontSize = 'text-5xl'; // 48px
+    } else if (letterWidth >= 40) {
+      fontSize = 'text-4xl'; // 36px
+    } else if (letterWidth >= 30) {
+      fontSize = 'text-3xl'; // 30px
     } else {
-      return { width: 45, height: 70, fontSize: 'text-3xl' }; // Smallest for very long words
+      fontSize = 'text-2xl'; // 24px
     }
+
+    return {
+      width: Math.round(letterWidth),
+      height: Math.round(letterHeight),
+      fontSize
+    };
   };
 
   const letterSize = getLetterSize();
@@ -62,8 +92,8 @@ export function InteractiveWordTracing({ word, color, onComplete }: InteractiveW
   }, [word, letters.length, onComplete]);
 
   return (
-    <div className="overflow-x-auto overflow-y-hidden pb-4 hide-scrollbar">
-      <div className="flex flex-nowrap items-center justify-center gap-2 min-w-max px-2">
+    <div className="overflow-y-hidden pb-4">
+      <div className="flex flex-nowrap items-center justify-center gap-2 px-4">
       {letters.map((letter, index) => {
         const isRevealed = index < revealedLetters;
 
