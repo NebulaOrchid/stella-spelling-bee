@@ -6,6 +6,7 @@ interface GymCardProps {
   gym: Gym;
   stars?: number; // 0-3 stars earned
   onClick?: () => void;
+  onVideoClick?: () => void; // Optional: Click handler for replay video icon
 }
 
 /**
@@ -17,7 +18,7 @@ interface GymCardProps {
  * - No lock state (all gyms accessible)
  * - Stars overlaid on semi-transparent bottom banner
  */
-export function GymCard({ gym, stars = 0, onClick }: GymCardProps) {
+export function GymCard({ gym, stars = 0, onClick, onVideoClick }: GymCardProps) {
   // Determine image source (fallback to emoji if no image)
   const hasImage = gym.imageUrl && gym.imageUrl.trim() !== '';
   const imageSource = hasImage ? gym.imageUrl : undefined;
@@ -108,6 +109,44 @@ export function GymCard({ gym, stars = 0, onClick }: GymCardProps) {
           boxShadow: `inset 0 0 60px ${gym.color}60, 0 0 40px ${gym.color}40`,
         }}
       />
+
+      {/* Replay Video Icon (top-right corner, only if video exists and 3 stars earned) */}
+      {gym.rewardVideoUrl && stars >= 3 && onVideoClick && (
+        <motion.button
+          className="absolute top-3 right-3 p-3 bg-black/70 rounded-full backdrop-blur-sm hover:bg-black/90 transition-all"
+          onClick={(e) => {
+            e.stopPropagation(); // Prevent triggering card onClick
+            onVideoClick();
+          }}
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.95 }}
+          animate={{
+            boxShadow: [
+              `0 0 0 0 ${gym.color}00`,
+              `0 0 0 8px ${gym.color}40`,
+              `0 0 0 0 ${gym.color}00`,
+            ],
+          }}
+          transition={{
+            boxShadow: {
+              duration: 2,
+              repeat: Infinity,
+              ease: 'easeInOut',
+            },
+          }}
+          aria-label="Replay reward video"
+        >
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="white"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path d="M8 5v14l11-7z" />
+          </svg>
+        </motion.button>
+      )}
     </motion.div>
   );
 }

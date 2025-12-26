@@ -30,6 +30,9 @@ interface GymContextType {
   completeMiniGame: (result: MiniGameResult) => void;
   dismissCelebration: () => void;
 
+  // Video actions
+  markVideoAsPlayed: (gymId: string) => void;
+
   // Progress actions
   resetAllProgress: () => void;
 }
@@ -197,6 +200,28 @@ export function GymProvider({ children, allWords }: GymProviderProps) {
     setCelebrationGym(null);
   }, []);
 
+  // Mark video as played (for tracking first-time auto-play)
+  const markVideoAsPlayed = useCallback((gymId: string) => {
+    console.log('[GYM CONTEXT] Marking video as played for gym:', gymId);
+
+    setGymProgress(prevProgress => {
+      const updatedGyms = prevProgress.gyms.map(gymProg => {
+        if (gymProg.gymId === gymId) {
+          return {
+            ...gymProg,
+            hasAutoPlayedVideo: true,
+          };
+        }
+        return gymProg;
+      });
+
+      return {
+        ...prevProgress,
+        gyms: updatedGyms,
+      };
+    });
+  }, []);
+
   // Reset all progress (for debugging or user request)
   const resetAllProgress = useCallback(() => {
     const freshProgress = ProgressStorage.resetProgress(gyms);
@@ -220,6 +245,7 @@ export function GymProvider({ children, allWords }: GymProviderProps) {
     returnToGymSelection,
     completeMiniGame,
     dismissCelebration,
+    markVideoAsPlayed,
     resetAllProgress,
   };
 

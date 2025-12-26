@@ -2,7 +2,7 @@ import type { Gym, MiniGame, Word } from '../types';
 
 // 18 Pokemon-type gym themes + 1 Wrong Gym
 export const GYM_THEMES = [
-  { name: 'Flame Badge', emoji: '🔥', imageUrl: '/images/gyms/fire-gym.png', theme: 'Fire', color: '#ef4444' },
+  { name: 'Flame Badge', emoji: '🔥', imageUrl: '/images/gyms/fire-gym.png', rewardVideoUrl: '/videos/gyms/fire-gym-reward.mp4', theme: 'Fire', color: '#ef4444' },
   { name: 'Cascade Badge', emoji: '💧', imageUrl: '/images/gyms/water-gym.png', theme: 'Water', color: '#3b82f6' },
   { name: 'Thunder Badge', emoji: '⚡', imageUrl: '/images/gyms/electric-gym.png', theme: 'Electric', color: '#eab308' },
   { name: 'Rainbow Badge', emoji: '🌿', imageUrl: '/images/gyms/grass-gym.png', theme: 'Grass', color: '#22c55e' },
@@ -130,24 +130,41 @@ export function distributeWordsToGyms(allWords: Word[]): Gym[] {
     validateMiniGame(miniGame2Words, 'MG2');
     validateMiniGame(miniGame3Words, 'MG3');
 
+    // Map gym index to mini-game image URLs
+    const getMiniGameImage = (gymIndex: number, order: number): string | undefined => {
+      const gymTypes = [
+        'fire', 'water', 'electric', 'grass', 'ice', 'stone', 'flying', 'ghost',
+        'dragon', 'poison', 'ground', 'psychic', 'bug', 'normal', 'fighting',
+        'steel', 'dark', 'fairy'
+      ];
+
+      if (gymIndex >= 0 && gymIndex < 18) {
+        return `/images/gyms/${gymTypes[gymIndex]}-mg-${order}.png`;
+      }
+      return undefined;
+    };
+
     const miniGames: MiniGame[] = [
       {
         id: `${gymId}-mg-01`,
         gymId,
         order: 1,
         wordIds: miniGame1Words,
+        imageUrl: getMiniGameImage(i, 1),
       },
       {
         id: `${gymId}-mg-02`,
         gymId,
         order: 2,
         wordIds: miniGame2Words,
+        imageUrl: getMiniGameImage(i, 2),
       },
       {
         id: `${gymId}-mg-03`,
         gymId,
         order: 3,
         wordIds: miniGame3Words,
+        imageUrl: getMiniGameImage(i, 3),
       },
     ];
 
@@ -158,6 +175,7 @@ export function distributeWordsToGyms(allWords: Word[]): Gym[] {
       name: gymTheme.name,
       emoji: gymTheme.emoji,
       imageUrl: (gymTheme as any).imageUrl, // Optional image URL (if provided in theme)
+      rewardVideoUrl: (gymTheme as any).rewardVideoUrl, // Optional reward video URL (if provided in theme)
       theme: gymTheme.theme,
       color: gymTheme.color,
       miniGames,

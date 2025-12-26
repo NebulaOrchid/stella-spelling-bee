@@ -72,7 +72,7 @@ export function VoiceInputWhisperOnly({
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isPronouncingWord, recordingStarted]);
 
-  // Whisper-only recording hook with 30s max time and 3s silence detection
+  // Whisper-only recording hook with 30s max time and 5s silence detection
   const {
     isRecording,
     isProcessing,
@@ -83,7 +83,7 @@ export function VoiceInputWhisperOnly({
     stopRecording,
   } = useWhisperOnlyRecording({
     recordingDuration: 30,
-    silenceDuration: 3.0, // 3 seconds - gives kids time to pause between letters
+    silenceDuration: 5.0, // 5 seconds - gives kids time to pause between letters (especially for long words)
     onComplete: handleRecordingComplete,
   });
 
@@ -116,35 +116,46 @@ export function VoiceInputWhisperOnly({
       structure: result.structure,
     });
 
-    // Check for critical issues that indicate user didn't spell it
-    const criticalIssues = result.issues.filter(issue =>
+    // Check if spelling was extracted successfully
+    const hasSpelling = result.spelling && result.spelling.length > 0;
+    const spellingMatchesWord = hasSpelling &&
+      result.spelling.toLowerCase() === currentWord.word.toLowerCase();
+
+    // Check for critical issues (only "no letters" is truly critical)
+    const hasNoLetters = result.issues.some(issue =>
       issue.includes('No letter sequence') ||
-      issue.includes('First word not found') ||
-      issue.includes('Second word not found')
+      issue.includes('No letters found')
     );
 
-    console.log('[VoiceInputWhisper] Critical issues:', criticalIssues);
+    console.log('[VoiceInputWhisper] Validation check:', {
+      hasSpelling,
+      spellingMatchesWord,
+      hasNoLetters,
+      extractedSpelling: result.spelling,
+      expectedWord: currentWord.word,
+    });
 
-    // STRICT VALIDATION: Require valid pattern structure
-    // Only accept if:
-    // 1. Pattern is valid (word → letters → word structure found)
-    // 2. No critical issues (letters were actually spelled out)
-    // 3. Spelling was extracted
+    // LENIENT VALIDATION: Accept if letters spell the correct word
+    // Even if the anchor words (beginning/end) didn't match perfectly
+    // What matters is: Did they spell the letters correctly?
     let finalSpelling = '';
 
-    if (result.isValid && criticalIssues.length === 0 && result.spelling && result.spelling.length > 0) {
-      // Valid pattern found - user spelled it correctly
+    if (spellingMatchesWord) {
+      // Spelling matches the expected word - accept it!
       finalSpelling = result.spelling.toLowerCase();
-      console.log('[VoiceInputWhisper] ✅ Valid spelling pattern detected:', finalSpelling);
+      console.log('[VoiceInputWhisper] ✅ Correct spelling detected:', finalSpelling);
+    } else if (hasSpelling && !hasNoLetters) {
+      // Has spelling but doesn't match - accept as incorrect attempt
+      finalSpelling = result.spelling.toLowerCase();
+      console.log('[VoiceInputWhisper] ⚠️ Incorrect spelling detected:', finalSpelling);
     } else {
-      // Invalid pattern or critical issues - reject
+      // No valid spelling extracted - reject
       finalSpelling = '';
-      console.log('[VoiceInputWhisper] ❌ Invalid pattern - rejecting attempt');
+      console.log('[VoiceInputWhisper] ❌ No valid spelling - rejecting attempt');
       console.log('[VoiceInputWhisper] Rejection reasons:', {
-        isValid: result.isValid,
-        hasCriticalIssues: criticalIssues.length > 0,
-        hasSpelling: !!result.spelling,
-        criticalIssues: criticalIssues,
+        hasSpelling,
+        hasNoLetters,
+        issues: result.issues,
       });
     }
 
@@ -246,7 +257,7 @@ export function VoiceInputWhisperOnly({
               </div>
 
               <p className="text-xs text-text-muted text-center">
-                Auto-submits after 3s silence
+                Auto-submits after 5s silence
               </p>
 
               {/* Submit button - always visible, allows manual submit */}

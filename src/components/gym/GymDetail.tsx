@@ -1,6 +1,8 @@
+import { useState, useEffect, useRef } from 'react';
 import { useGym } from '../../contexts/GymContext';
 import { Button } from '../common/Button';
 import { MiniGameCard } from './MiniGameCard';
+import { GymRewardVideo } from './GymRewardVideo';
 import { ProgressStorage } from '../../services/storage/progressStorage';
 
 /**
@@ -8,7 +10,9 @@ import { ProgressStorage } from '../../services/storage/progressStorage';
  * Shows a single gym with its 3 mini-games
  */
 export function GymDetail() {
-  const { selectedGym, gymProgress, startMiniGame, returnToGymSelection } = useGym();
+  const { selectedGym, gymProgress, startMiniGame, returnToGymSelection, markVideoAsPlayed } = useGym();
+  const [showRewardVideo, setShowRewardVideo] = useState(false);
+  const previousStarsRef = useRef<number>(0);
 
   if (!selectedGym) {
     return null;
@@ -19,7 +23,31 @@ export function GymDetail() {
     return null;
   }
 
-  const { badgeUnlocked, starsEarned } = progress;
+  const { badgeUnlocked, starsEarned, hasAutoPlayedVideo } = progress;
+
+  // Auto-play reward video when achieving 3 stars for the first time
+  useEffect(() => {
+    // Check conditions for auto-playing video:
+    // 1. Gym has a reward video
+    // 2. Just achieved 3 stars (stars changed from < 3 to 3)
+    // 3. Video hasn't been auto-played before
+    const justAchieved3Stars = previousStarsRef.current < 3 && starsEarned === 3;
+    const shouldAutoPlay = selectedGym.rewardVideoUrl && justAchieved3Stars && !hasAutoPlayedVideo;
+
+    if (shouldAutoPlay) {
+      console.log('[GymDetail] Auto-playing reward video for:', selectedGym.name);
+      setShowRewardVideo(true);
+      markVideoAsPlayed(selectedGym.id);
+    }
+
+    // Update previous stars count
+    previousStarsRef.current = starsEarned;
+  }, [starsEarned, selectedGym, hasAutoPlayedVideo, markVideoAsPlayed]);
+
+  // Handle video close
+  const handleVideoClose = () => {
+    setShowRewardVideo(false);
+  };
 
   return (
     <div
@@ -37,7 +65,18 @@ export function GymDetail() {
 
       {/* Gym header */}
       <div className="text-center mb-12">
-        <div className="text-9xl mb-4 animate-bounce">{selectedGym.emoji}</div>
+        {/* Gym icon - image for Fire Gym, emoji for others */}
+        {selectedGym.theme === 'Fire' ? (
+          <div className="flex justify-center mb-4 animate-bounce">
+            <img
+              src="/images/gyms/fire-gym-icon.png"
+              alt="Fire Gym Icon"
+              className="w-32 h-32 object-contain"
+            />
+          </div>
+        ) : (
+          <div className="text-9xl mb-4 animate-bounce">{selectedGym.emoji}</div>
+        )}
         <h1 className="text-5xl font-bold mb-2" style={{ color: selectedGym.color }}>
           {selectedGym.name}
         </h1>
@@ -101,6 +140,18 @@ export function GymDetail() {
           </p>
         </div>
       </div>
+
+      {/* Reward Video Modal */}
+      {selectedGym.rewardVideoUrl && (
+        <GymRewardVideo
+          videoUrl={selectedGym.rewardVideoUrl}
+          gymColor={selectedGym.color}
+          gymName={selectedGym.name}
+          isOpen={showRewardVideo}
+          onClose={handleVideoClose}
+          autoPlay={true}
+        />
+      )}
     </div>
   );
 }

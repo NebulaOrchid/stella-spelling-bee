@@ -93,6 +93,7 @@ export interface MiniGame {
   gymId: string;
   order: 1 | 2 | 3;
   wordIds: string[];
+  imageUrl?: string; // Optional: Path to mini-game trainer image (e.g., '/images/gyms/fire-mg-1.png')
 }
 
 export interface Gym {
@@ -105,6 +106,7 @@ export interface Gym {
   miniGames: MiniGame[];
   wordIds: string[]; // All 25 word IDs for this gym (empty for Wrong Gym - dynamically populated)
   type?: 'normal' | 'wrong'; // 'wrong' for the special Wrong Gym that tracks incorrect words
+  rewardVideoUrl?: string; // Optional: Path to reward video for completing all 3 mini-games (e.g., '/videos/gyms/fire-gym-reward.mp4')
 }
 
 export interface MiniGameProgress {
@@ -122,6 +124,7 @@ export interface GymProgress {
   badgeUnlocked: boolean;
   starsEarned: number; // 0-3
   completedAt?: number;
+  hasAutoPlayedVideo?: boolean; // Track if reward video has been auto-played (first time achievement)
 }
 
 export interface UserGymProgress {

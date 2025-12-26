@@ -1,6 +1,9 @@
+import { useState } from 'react';
 import { useGym } from '../../contexts/GymContext';
 import { GymCard } from './GymCard';
+import { GymRewardVideo } from './GymRewardVideo';
 import { ProgressStorage } from '../../services/storage/progressStorage';
+import type { Gym } from '../../types';
 
 /**
  * Gym Selection Screen
@@ -8,6 +11,7 @@ import { ProgressStorage } from '../../services/storage/progressStorage';
  */
 export function GymSelection() {
   const { gyms, gymProgress, selectGym } = useGym();
+  const [videoGym, setVideoGym] = useState<Gym | null>(null);
 
   return (
     <div className="min-h-screen bg-background p-6">
@@ -47,6 +51,7 @@ export function GymSelection() {
               gym={gym}
               stars={progress.starsEarned}
               onClick={() => selectGym(gym.id)}
+              onVideoClick={() => setVideoGym(gym)}
             />
           );
         })}
@@ -61,6 +66,18 @@ export function GymSelection() {
           Earn ⭐ by spelling all words correctly on the first try
         </p>
       </div>
+
+      {/* Reward Video Modal (for replay from gym selection) */}
+      {videoGym && videoGym.rewardVideoUrl && (
+        <GymRewardVideo
+          videoUrl={videoGym.rewardVideoUrl}
+          gymColor={videoGym.color}
+          gymName={videoGym.name}
+          isOpen={!!videoGym}
+          onClose={() => setVideoGym(null)}
+          autoPlay={false}
+        />
+      )}
     </div>
   );
 }
