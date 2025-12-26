@@ -3,9 +3,9 @@ import type { Gym, MiniGame, Word } from '../types';
 // 18 Pokemon-type gym themes + 1 Wrong Gym
 export const GYM_THEMES = [
   { name: 'Flame Badge', emoji: '🔥', imageUrl: '/images/gyms/fire-gym.png', rewardVideoUrl: '/videos/gyms/fire-gym-reward.mp4', theme: 'Fire', color: '#ef4444' },
-  { name: 'Cascade Badge', emoji: '💧', imageUrl: '/images/gyms/water-gym.png', theme: 'Water', color: '#3b82f6' },
+  { name: 'Cascade Badge', emoji: '💧', imageUrl: '/images/gyms/water-gym.png', rewardVideoUrl: '/videos/gyms/water-gym-reward.mp4', theme: 'Water', color: '#3b82f6' },
   { name: 'Thunder Badge', emoji: '⚡', imageUrl: '/images/gyms/electric-gym.png', theme: 'Electric', color: '#eab308' },
-  { name: 'Rainbow Badge', emoji: '🌿', imageUrl: '/images/gyms/grass-gym.png', theme: 'Grass', color: '#22c55e' },
+  { name: 'Rainbow Badge', emoji: '🌿', imageUrl: '/images/gyms/grass-gym.png', rewardVideoUrl: '/videos/gyms/grass-gym-reward.mp4', theme: 'Grass', color: '#22c55e' },
   { name: 'Glacier Badge', emoji: '❄️', imageUrl: '/images/gyms/ice-gym.png', theme: 'Ice', color: '#06b6d4' },
   { name: 'Boulder Badge', emoji: '🪨', imageUrl: '/images/gyms/rock-gym.png', theme: 'Rock', color: '#92400e' },
   { name: 'Zephyr Badge', emoji: '🦅', imageUrl: '/images/gyms/flying-gym.png', theme: 'Flying', color: '#7dd3fc' },
@@ -18,7 +18,7 @@ export const GYM_THEMES = [
   { name: 'Plain Badge', emoji: '⭐', imageUrl: '/images/gyms/normal-gym.png', theme: 'Normal', color: '#a3a3a3' },
   { name: 'Knuckle Badge', emoji: '🥊', imageUrl: '/images/gyms/fighting-gym.png', theme: 'Fighting', color: '#dc2626' },
   { name: 'Iron Badge', emoji: '⚙️', imageUrl: '/images/gyms/steel-gym.png', theme: 'Steel', color: '#71717a' },
-  { name: 'Eclipse Badge', emoji: '🌙', imageUrl: '/images/gyms/dark-gym.png', theme: 'Dark', color: '#1f2937' },
+  { name: 'Eclipse Badge', emoji: '🌙', imageUrl: '/images/gyms/dark-gym.png', rewardVideoUrl: '/videos/gyms/dark-gym-reward.mp4', theme: 'Dark', color: '#1f2937' },
   { name: 'Fairy Badge', emoji: '🧚', imageUrl: '/images/gyms/fairy-gym.png', theme: 'Fairy', color: '#f9a8d4' },
 ];
 
