@@ -40,6 +40,7 @@ export default defineConfig({
       },
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,svg,woff2}'],
+        maximumFileSizeToCacheInBytes: 3 * 1024 * 1024, // 3 MB (increased for gym images)
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/api\.openai\.com\/.*/i,
